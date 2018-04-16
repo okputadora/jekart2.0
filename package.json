@@ -1,0 +1,33 @@
+{
+  "name": "jekart",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "build": "gulp"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^6.2.1",
+    "bluebird": "^3.5.1",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^5.0.1",
+    "express": "~4.15.5",
+    "hjs": "~0.0.6",
+    "hogan-middleware": "^0.2.2",
+    "mongoose": "^5.0.4",
+    "morgan": "~1.9.0",
+    "sendgrid": "^5.2.3",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}

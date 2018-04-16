@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head }}
+<body class="stretched">
+	<div id="wrapper" class="clearfix" style>
+		{{>nav }}
+		<div id="page-menu" class="no-sticky" style="background: #1b1b1b">
+			<div id="" class='custom-page-banner'style="position: fixed; width: 100%;">
+				<div class="container clearfix">
+					<div style="padding-left: 10px;"class="menu-title"><span>galleries</span></div>
+				</div>
+			</div>
+		</div>
+		<section id="content" style="width:100%;">
+			<div class="content-wrap custom-background">
+				<div class="container clearfix">
+					<div class="clear"></div>
+				<div id="galleries" class="flex-container">
+					{{#galleries}}
+					<a href='/gallery/{{name}}'><div id="gallery-{{name}}" class="gallery">
+						<img src="/art_imgs/{{name}}/{{imagePath}}" class="gallery-image"/>
+						<div class="gallery-description"><div class="gallery-title">{{name}}</div></div>
+					</div></a>
+					{{/galleries}}
+				</div>
+				</div>
+			</div>
+			<div id="gotoTop" class="icon-angle-up"></div>
+		</section>
+		{{>footer}}
+	</div>
+	<script src="/build/vendor.min.js"></script>
+</body>
+</html>

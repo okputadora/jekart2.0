@@ -1,0 +1,56 @@
+<!-- Header
+============================================= -->
+<header id="header" class="transparent-header">
+
+  <div id="header-wrap" class='custom-header'>
+
+    <div class="container clearfix">
+
+      <div class='custom-menu-trigger'id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+      <!-- Logo
+      ============================================= -->
+      <div id="logo" style="display: flex; margin-right: 0; transition: .1s;">
+        <a href="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img  style='padding: 10px;' src="/art_imgs/face.png" alt=""></a>
+        <div class='custom-title'>
+          <div><a href="/">Joseph Edgerton Krause</a></div>
+        </div>
+      </div><!-- #logo end -->
+
+      <!-- Primary Navigation
+      ============================================= -->
+      <nav id="primary-menu">
+
+        <ul>
+          <li><a href="/statement"><div class='custom-menu-item'>Statement</div></a></li>
+          <li><a href="/galleries"><div class='custom-menu-item'>Galleries</div></a>
+            <ul class='custom-sub-menu'>
+              {{# galleries}}
+              <li><a class="sub-menu-item-container"href="/gallery/{{name}}"><div class="custom-sub-menu-item">{{name}}</div></a></li>
+              {{/ galleries}}
+            </ul>
+          </li>
+          <li><a href="/shop"><div class='custom-menu-item'>Prints</div></a>
+            <!-- <ul class='custom-sub-menu'>
+              <li><a class='custom-sub-menu-item' href="index-corporate.html"><div>Prints</div></a></li>
+              <li><a class='custom-sub-menu-item' href="index-corporate.html"><div>Art</div></a></li>
+            </ul> -->
+          </li>
+          <li><a href="/process"><div class='custom-menu-item'>Process</div></a></li>
+          <li><a href="/events"><div class='custom-menu-item'>Events</div></a>
+            <!-- <ul class='custom-sub-menu'>
+              <li><a class='custom-sub-menu-item' href="index-corporate.html"><div>Upcoming</div></a></li>
+              <li><a class='custom-sub-menu-item' href="index-corporate.html"><div>Past</div></a></li>
+            </ul> -->
+          </li>
+          <li><a href="/contact"><div class='custom-menu-item'>Contact</div></a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </div>
+
+</header><!-- #header end -->

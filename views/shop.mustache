@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{> head }}
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+    {{> nav }}
+		<div id="page-menu" class="no-sticky" style="background: #1b1b1b">
+			<div id="" class='custom-page-banner'style="position: fixed; width: 100%;">
+				<div class="container clearfix">
+					<div style="padding-left: 10px;"class="menu-title" style='width: 100%'><span>prints</span></div>
+					<!-- <a href="/cart"><i class="icon-shopping-cart right custom-cart"></i></a> -->
+				</div>
+			</div>
+		</div>
+
+    <section id="content" class="plain-background">
+
+			<div class="content-wrap" style="overflow-x: visible">
+				<div class="container clearfix">
+
+					<!-- Shop
+					============================================= -->
+					<div id="shop" class="shop grid-container clearfix" data-layout="fitRows">
+					{{#prints}}
+						<div class="product clearfix text-center">
+							<div class="product-image custom-print-img">
+								<a href="/shop-item/{{name}}"><img src="/art_imgs/prints/{{image1}}" alt="{{name}}"></a>
+								<!-- <a href="/shop-item/{{name}}"><img src="/art_imgs/prints/{{image2}}" alt="{{name}}"></a> -->
+								<!-- <div class="product-overlay">
+									<a id={{id}} class="add-to-cart" style="width:100%"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+								</div> -->
+							</div>
+							<div class="product-desc text-center" style="padding-top: 10px">
+								<div class="product-title" style="margin:0"><h3><a href="#">{{name}}</a></h3></div>
+								<span class="product-price" style="font-size: 17px">${{price1}}</span>
+							</div>
+						</div>
+					{{/prints}}
+					</div><!-- #shop end -->
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+    {{> footer }}
+	</div><!-- #wrapper end -->
+  </body>
+  </html>

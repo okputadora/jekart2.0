@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{> head }}
+<body class="stretched">
+	<div id="wrapper" class="clearfix">
+    {{> nav }}
+		<div id="page-menu" class="no-sticky" style="background: #1b1b1b">
+			<div id="" class='custom-page-banner'style='position: fixed; width: 100%;'>
+				<div class="container clearfix">
+					<div style="padding-left: 10px;"class="menu-title"><a href="/shop">prints</a>
+						<img style="margin:5px;"src="/images/icons/submenu.png" /><span>{{name}}</span>
+					</div>
+					<!-- <a href="/cart"><i class="icon-shopping-cart right custom-cart"><span id="cart-count"></span></i></a> -->
+			 </div>
+			</div>
+		</div>
+    <section id="content" class="plain-background">
+      <div class="content-wrap">
+        <div class="container clearfix">
+          <div class="single-product">
+            <div class="product">
+              <div class="col_two_fifth">
+                <div class="product-image">
+                  <div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true">
+                    <div class="flexslider">
+                      <div class="slider-wrap" data-lightbox="gallery">
+												{{#images}}
+                        	<div class="slide custom-shadow" data-thumb="/art_imgs/prints/{{.}}"><a href="/art_imgs/prints/{{.}}" title="{{name}}" data-lightbox="gallery-item"><img width="200px" src="/art_imgs/prints/{{.}}" alt={{name}}></a></div>
+												{{/images}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col_two_fifth product-desc">
+								<h2>{{name}}</h2>
+                <div class="product-price"><ins class="black-text">${{price1}} <span class="small-text">($90 framed)</span></ins></div>
+                <div class="clear"></div>
+                <div class="line"></div>
+                <form class="nobottommargin clearfix">
+									<p>We're still setting up the shop. check back soon! If you're interested in purchasing a print now, just send me a
+										<a href="/contact"><strong>message</strong></a></p>
+                  <!-- <div class="quantity custom-shadow clearfix">
+                    <input id="removeItem" type="button" value="-" class="minus">
+                    <input id="itemCount" type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="3" />
+                    <input id="addItem"type="button" value="+" class="plus">
+                  </div>
+									<div class="quantity clearfix">
+										<div class="custom-checkbox">
+											<h4 class="framed">Framed</h4>
+											<input type="checkbox" id="checkbox-input" value="1" class="inline-checkbox custom-checkbox" />
+											<label for="checkbox-input"></label>
+										</div>
+									</div>
+                  <button id={{id}} class="button nomargin custom-shadow shop-item-cart" style="background-color: black">Add to cart</button> -->
+                </form>
+                <div class="clear"></div>
+                <div class="line"></div>
+                <ul class="iconlist">
+                  <li><i class="icon-caret-right"></i>{{description}}</li>
+                  <li><i class="icon-caret-right"></i>{{dimensions}} inches</li>
+									<li><i class="icon-caret-right"></i>2 for ${{price2}}(ea.)</li>
+									<li><i class="icon-caret-right"></i>3 for ${{price3}}(ea.)</li>
+                </ul>
+              </div>
+              <div class="col_one_fifth col_last">
+                <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
+                <div class="feature-box fbox-plain fbox-dark fbox-small">
+                  <div class="fbox-icon">
+                    <i class="icon-credit-cards"></i>
+                  </div>
+                  <h3>Payment Options</h3>
+                  <p class="notopmargin">We accept Visa, MasterCard and American Express.</p>
+                </div>
+                <div class="feature-box fbox-plain fbox-dark fbox-small">
+                  <div class="fbox-icon">
+                    <i class="icon-truck2"></i>
+                  </div>
+                  <h3>Free Shipping</h3>
+                  <p class="notopmargin">Free shipping for all UNFRAMED prints to the U.S.
+										Standard shipping rates apply for framed prints
+									</p>
+                </div>
+                <div class="feature-box fbox-plain fbox-dark fbox-small">
+                  <div class="fbox-icon">
+                    <i class="icon-money"></i>
+                  </div>
+                  <h3>Discounts</h3>
+                  <p class="notopmargin">$5 discount for local pickup</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {{> footer }}
+	</div>
+  </body>
+  </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head }}
+<body class="stretched">
+	<div id="wrapper" class="clearfix" style>
+		{{>nav }}
+		<div class="row" style="min-width:100%;">
+			<div id="page-menu" class="no-sticky" style="width: 100%;">
+				<div id="" class='custom-page-banner custom-fixed' style="z-index: 99; width: 110%;">
+					<div class="container clearfix">
+						<div style="padding-left: 10px;"class="menu-title"><a href="/galleries">galleries</a>
+							<img style="margin: 5px;"src='/images/icons/submenu.png' /><a href="/gallery/{{gallery}}">{{gallery}}</a>
+							<img style="margin: 5px;"src='/images/icons/submenu.png' /> <span> {{title}} </span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+<section style="position: fixed;filter: opacity(80%) brightness(40%); top: 0; height: 100vh; width: 100vw; background: url('/art_imgs/{{gallery}}/background/{{imagePath}}'); background-attachment: fixed; background-size: cover; background-position: center;"></section>
+<section id="content" style="background: none; height: 100%">
+  <div class="content-wrap">
+    <div class="container clearfix">
+      <div id="portfolio" class="portfolio grid-container portfolio-1 clearfix">
+        <article class="portfolio-item pf-media pf-icons clearfix"  style='border-bottom: none'>
+          <div class="portfolio-image">
+              <a href='/art_imgs/{{gallery}}/{{imagePath}}'><img src="/art_imgs/{{gallery}}/{{imagePath}}" alt="{{name}}"></a>
+          </div>
+          <div class="portfolio-desc" style="color: white">
+            <h3 style="color: white; font-size:25px; text-transform:capitalize">{{title}}</h3>
+            <p style="font-size: 20px; line-height: 1.2">{{description}}</p>
+            <ul style='font-size: 20px; margin:0' class="iconlist">
+              {{dimensions}}
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+	<div id="gotoTop" class="icon-angle-up"></div>
+</section>
+	</div>
+	<footer id="footer" class='dark' style='margin-top: 0px !important'>
+		<div id="copyrights">
+			<div class="container clearfix">
+				<div class="col_half">
+					Copyrights &copy; 2018 All Rights Reserved by Joseph Edgerton Krause
+				</div>
+				<div class="col_half col_last tright">
+					<div class="fright clearfix">
+						<a href="#" class="social-icon si-small si-borderless si-instagram">
+							<i class="icon-instagram"></i>
+							<i class="icon-instagram"></i>
+						</a>
+						<a href="#" class="social-icon si-small si-borderless si-vimeo">
+							<i class="icon-vimeo"></i>
+							<i class="icon-vimeo"></i>
+						</a>
+					</div>
+					<div class="clear"></div>
+					<i class="icon-envelope2"></i> info@jekart.com
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="/build/vendor.min.js"></script>
+</body>
+</html>

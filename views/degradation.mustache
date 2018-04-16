@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head }}
+<body class="stretched">
+	<div id="wraper" class="clearfix" style>
+		{{>nav }}
+		<div id="page-menu" class="no-sticky" style="background: #1b1b1b">
+			<div id="" class='custom-page-banner'style="position: fixed; width: 100%;">
+				<div class="container clearfix">
+					<div style="padding-left: 10px;"class="menu-title"><a href="/galleries">galleries</a>
+					<img style="margin:5px;"src="/images/icons/submenu.png" /><span>{{galleryName}}</span></div>
+				</div>
+			</div>
+		</div>
+		<section id="content" style="height: 100%">
+			<div class="content-wrap custom-background">
+        <div class="container clearfix">
+					<div id="portfolio" class="portfolio grid-container clearfix">
+            <div class="flex-container">
+            {{#gallery}}
+            <article class="custom-hover">
+
+              <div class="">
+                <a href="/image/{{name}}">
+                  <img class="degradation-image" src="/art_imgs/{{galleryName}}/{{imagePath}}" alt="Open Imagination">
+                </a>
+              </div>
+              <div class="portfolio-desc">
+                <h3><a class='custom-image-title'href="/image/{{name}}">{{name}}</a></h3>
+                <div class='details'>
+                  <div class='description'>{{description}}</div>
+                </div>
+              </div>
+            </article>
+            {{/gallery}}
+          </div>
+					</div>
+				</div>
+			</div>
+			<div id="gotoTop" class="icon-angle-up" style></div>
+		</section>
+		{{>footer}}
+	</div>
+</body>
+</html>

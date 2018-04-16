@@ -1,0 +1,11 @@
+/public/theme/
+/node_modules/
+sendgrid.env
+.env
+/public/art_imgs
+art.json
+prints.json
+/public/images
+/public/less/
+/public/min/
+/public/build/
