@@ -217,6 +217,36 @@ a {
   background-color: black!important;
 }
 
+.custom-shop-banner{
+  padding-top: 10px;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  background: #f2f2f2;
+}
+
+.custom-sales-box{
+  font-size: 20px !important;
+  line-height: 1.2 !important;
+  padding: 15px !important;
+  box-sizing: border-box !important;
+  background: rgba(50, 50, 50, 0.7);
+  color: white !important
+}
+
+.custom-desc{
+  background: rgba(85,85,85, 0.7) !important;
+}
+
+#opaque{
+  opacity: 1 !important;
+}
+
+.custom-shop-banner > h2 {
+  font-size: 22px !important;
+  margin: 0;
+}
+
 .add-to-cart{
   cursor: pointer
 }
