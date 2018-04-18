@@ -160,7 +160,7 @@ a {
 }
 
 .plain-background{
-  background: #fafafa;
+  background: #fff;
 }
 .gallery-image{
   height: 300px;
@@ -270,6 +270,10 @@ a {
 .custom-print-img{
   /* margin: 30px !important; */
   box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2)
+}
+
+.cover-border{
+  border: 2px solid white !important;
 }
 
 input[type=checkbox]{
