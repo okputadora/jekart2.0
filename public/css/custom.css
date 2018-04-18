@@ -197,7 +197,11 @@ a {
   display: none !important;
 }
 
-
+.process-img{
+  max-height: 82vh !important;
+  width: auto !important;
+  margin: auto !important;
+}
 
 .custom-image-title{
   color: white !important;

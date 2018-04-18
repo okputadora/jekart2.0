@@ -2203,7 +2203,7 @@ var SEMICOLON = SEMICOLON || {};
 						slideshow: flexsSlideshow,
 						slideshowSpeed: Number(flexsPause),
 						animationSpeed: Number(flexsSpeed),
-						pauseOnHover: flexsHover,
+						pauseOnHover: false,
 						video: flexsVideo,
 						controlNav: flexsPagi,
 						directionNav: flexsArrows,
