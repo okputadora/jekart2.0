@@ -48,6 +48,14 @@ a {
     opacity: 1 !important;
 }
 
+.custom-mobile-logo{
+  box-sizing: content-box;
+  height: 40px !important;
+  width: 60px !important;
+  margin-top: 30px;
+  margin-left: -20px;
+}
+
 .custom-current{
   color: #717171 !important;
 }
