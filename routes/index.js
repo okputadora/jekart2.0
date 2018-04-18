@@ -66,19 +66,30 @@ router.get('/gallery/:name', function(req, res, next){
   controller = controllers['art']
   controller.getByParam({galleryName: name})
   .then(function(gallery){
+    var displayGallery = gallery.map(function(elem){
+      var title = elem.name.split(" ")
+      var capitalized = [];
+      title.forEach(function(word){
+        capitalWord = word.charAt(0).toUpperCase() + word.substring(1)
+        capitalized.push(capitalWord)
+      })
+      console.log(capitalized)
+      elem['displayName'] = capitalized.join(" ")
+      console.log(elem.displayName)
+      return elem;
+    })
     // load special template for degradation sets
     if (name === "degradation sets"){
       res.render("degradation", {
         galleryName: name,
-        gallery: gallery,
+        gallery: displayGallery,
         galleries: galleries
       })
       return
     }
-    // if name = degradation set then we need to load a differnet template
     res.render('gallery', {
       galleryName: name,
-      gallery: gallery,
+      gallery: displayGallery,
       galleries: galleries
     })
   })
