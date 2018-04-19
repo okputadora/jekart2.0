@@ -22,6 +22,10 @@ a {
   color: black !important;
 }
 
+.custom-shadow{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+}
+
 .custom-header{
   background-color: #292929 !important;
   box-shadow: 2px 2px 2px 2px #1b1b1b;
@@ -160,7 +164,7 @@ a {
 }
 
 .plain-background{
-  background: #fff;
+  background-color: #fafafa !important;
 }
 .gallery-image{
   height: 300px;
@@ -259,6 +263,16 @@ a {
   color: white !important;
 }
 
+.shop-item-add-to-cart{
+  border-radius: 3px;
+  transition: all 0.2s cubic-bezier(.25,.8,.25,1);
+  color: white;
+  background-color: black !important;
+}
+.shop-item-add-to-cart:hover{
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
 .custom-cart{
   color: white;
   font-size: 30px !important;
@@ -272,15 +286,18 @@ a {
   box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2)
 }
 
+/* hack to get rid of border around individual product images
+canvass is dynamically creating it and this is easier than altering
+their functions.js */
 .cover-border{
-  border: 2px solid white !important;
+  border: 2px solid #fafafa !important;
 }
 
 input[type=checkbox]{
   visibility: hidden
 }
 
-.checkout-container{
+.shop-container{
   border: 1px solid #ddd;
   background: #f8f8f8;
 }

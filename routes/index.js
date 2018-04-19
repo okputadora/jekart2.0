@@ -4,23 +4,11 @@
 // but the users as well? but then what is the index route for? I thought it was
 // for sending all of the pages to the user? Obviously I don't understand how
 // different routes are supposed to be employed
-var express = require('express');
-var controllers = require('../controllers/')
-var router = express.Router();
-
-var galleries = [
-  {name:'2017-2018', imagePath: 'bluemoon.png'},
-  {name:'bedlam cups', imagePath: 'focalpoints.png'},
-  {name:'scribble faces', imagePath: 'napkinfaces.png'},
-  {name:'window', imagePath: 'windowdrip.png'},
-  {name:'wood blocks', imagePath: 'thirdfloor.png'},
-  {name:'deep resin', imagePath: 'resinman.png'},
-  {name:'wood burning', imagePath: 'woodwinter.png'},
-  {name:'degradation sets', imagePath: 'ds.png'},
-  {name:'2016', imagePath: 'nobody.png'},
-  {name:'2014-2015', imagePath: 'spaceman.png'},
-];
-
+const express = require('express');
+const controllers = require('../controllers/')
+const router = express.Router();
+// move this to the db eventually
+const galleries = require('../galleries')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
@@ -32,27 +20,12 @@ router.get('/', function(req, res, next) {
 
 router.get('/:page', function(req, res, next){
   var page = req.params.page
-  // list of STATIC pages, dynamic pages have their own routes below
+  // list of STATIC pages, dynamic pages have their own routes
   var pages = ['statement', 'galleries', 'process', 'events',
-      'upcoming-events', 'shop', 'past-events', 'contact', 'confirmation',
+      'upcoming-events', 'past-events', 'contact', 'confirmation',
       'cart', 'checkout', 'admin']
   if (pages.indexOf(page) == -1){
     res.render('error', {galleries: galleries})
-    return
-  }
-  if (page == "shop"){
-    controller = controllers['prints']
-    controller.get()
-    .then(function(prints){
-      console.log("loading shop")
-      res.render('shop', {
-        galleries: galleries,
-        prints: prints
-      })
-    })
-    .catch(function(error){
-      res.render('error', {galleries: galleries})
-    })
     return
   }
   res.render(page, {
@@ -119,33 +92,6 @@ router.get('/image/:name', function(req, res, next){
   })
 })
 
-router.get('/shop-item/:item', function(req,res,next){
-  var name = {name: req.params.item.trim()}
-  controller = controllers['prints']
-  controller.getByParam(name)
-  .then(function(print){
-    print = print[0]
-    var images = [print.image1]
-    if (print.image2 != ""){
-      images.push(print.image2)
-    }
-    res.render('shop-item', {
-      name: print.name,
-      images: [print.image1, print.image2],
-      description: print.description,
-      dimensions: print.dimensions,
-      price1: print.price1,
-      price2: print.price2,
-      price3: print.price3,
-      framedPrice: (print.price+50),
-      galleries: galleries,
-      id: print._id
-    })
-  })
-  .catch(function(error){
-    res.render("error", {galleries: galleries})
-  })
-})
 // contact form
 router.post('/:action', function(req, res, next){
   var action = req.params.action
@@ -154,7 +100,7 @@ router.post('/:action', function(req, res, next){
   }
 })
 
-router.get('/stripe/:action', function(req, res, next){
+router.get('/stripe', function(req, res, next){
   console.log()
   next()
 })
