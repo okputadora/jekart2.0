@@ -280,6 +280,11 @@ input[type=checkbox]{
   visibility: hidden
 }
 
+.checkout-container{
+  border: 1px solid #ddd;
+  background: #f8f8f8;
+}
+
 .custom-checkbox{
 	width: 25px;
 	height: 25px;

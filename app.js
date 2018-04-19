@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var api = require('./routes/api');
+var stripe = require('./routes/stripe');
 require('dotenv').config();
 
 mongoose.connect(process.env.MONGO_URI, function(err, res){
@@ -32,9 +33,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/stripe', stripe)
 app.use('/api', api);
 app.use('/gallery', index)
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

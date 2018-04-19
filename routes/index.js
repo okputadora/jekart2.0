@@ -154,4 +154,9 @@ router.post('/:action', function(req, res, next){
   }
 })
 
+router.get('/stripe/:action', function(req, res, next){
+  console.log()
+  next()
+})
+
 module.exports = router;
