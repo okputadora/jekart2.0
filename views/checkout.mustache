@@ -110,13 +110,14 @@
 							<div class="table-responsive">
 								<table class="table cart">
 									<tbody>
+									{{#items}}
 										<tr class="cart_item">
 											<td class="notopborder cart-product-name">
 												<strong>Cart Subtotal</strong>
 											</td>
 
 											<td class="notopborder cart-product-name text-right">
-												<span class="amount">$106.94</span>
+												<span class="amount">${{subtotal}}</span>
 											</td>
 										</tr>
 										<tr class="cart_item">
@@ -125,9 +126,10 @@
 											</td>
 
 											<td class="cart-product-name text-right">
-												<span class="amount">Free Delivery</span>
+												<span class="amount">{{shipping}}</span>
 											</td>
 										</tr>
+										{{/items}}
 										<tr class="cart_item">
 											<td class="cart-product-name">
 												<strong>Total</strong>

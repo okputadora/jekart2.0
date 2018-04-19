@@ -8,9 +8,11 @@ const express = require('express');
 const controllers = require('../controllers/')
 const router = express.Router();
 // move this to the db eventually
-const galleries = require('../galleries')
+const galleryImport = require('../galleries')
+const galleries = galleryImport.galleries;
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log(galleries)
   res.render('index', {
     title: 'JEK art',
     galleries: galleries
@@ -22,8 +24,7 @@ router.get('/:page', function(req, res, next){
   var page = req.params.page
   // list of STATIC pages, dynamic pages have their own routes
   var pages = ['statement', 'galleries', 'process', 'events',
-      'upcoming-events', 'past-events', 'contact', 'confirmation',
-      'cart', 'checkout', 'admin']
+      'upcoming-events', 'past-events', 'contact', 'confirmation', 'admin']
   if (pages.indexOf(page) == -1){
     res.render('error', {galleries: galleries})
     return
@@ -100,9 +101,5 @@ router.post('/:action', function(req, res, next){
   }
 })
 
-router.get('/stripe', function(req, res, next){
-  console.log()
-  next()
-})
 
 module.exports = router;

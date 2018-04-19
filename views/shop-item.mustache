@@ -7,7 +7,7 @@
 		<div id="page-menu" class="no-sticky" style="background: #1b1b1b">
 			<div id="" class='custom-page-banner'style='position: fixed; width: 100%;'>
 				<div class="container clearfix">
-					<div style="padding-left: 10px;"class="menu-title"><a href="/shop">prints</a>
+					<div style="padding-left: 10px;"class="menu-title"><a href="/shop">shop</a>
 						<img style="margin:5px;"src="/images/icons/submenu.png" /><span>{{name}}</span>
 					</div>
 					<a href="/cart"><i class="icon-shopping-cart right custom-cart"><span id="cart-count"></span></i></a>
@@ -16,6 +16,7 @@
 		</div>
     <section id="content" class="plain-background">
       <div class="content-wrap">
+				<span id="cartAdded" class="custom-shadow"></span>
         <div class="container clearfix">
           <div class="single-product">
             <div class="product">
@@ -52,7 +53,12 @@
 											<label for="checkbox-input"></label>
 										</div>
 									</div>
-                  <button id={{id}} class="button nomargin custom-shadow shop-item-add-to-cart">Add to cart</button>
+									<div class="clearfix">
+										<button id={{id}} class="button custom-shadow add-to-cart shop-item-add-to-cart ">Add to cart</button>
+									</div>
+									<div class="clearfix">
+										<a id="checkout" href="/shop/cart" class="button custom-shadow shop-item-add-to-cart">checkout</a>
+									</div>
                 </form>
                 <div class="clear"></div>
                 <div class="line"></div>

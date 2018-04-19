@@ -14,7 +14,7 @@
       <div id="" class='custom-page-banner'style="position: fixed; width: 100%;">
         <div class="container clearfix">
           <div style="padding-left: 10px;"class="menu-title" style='width: 100%'><a href='/shop'>shop </a><img style="margin:5px;" src="/images/icons/submenu.png"><span>cart</span></div>
-          <a href="/cart"><i class="icon-shopping-cart right custom-cart"></i></a>
+          <a href=""><i class="icon-shopping-cart right custom-cart"></i></a>
         </div>
       </div>
     </div>
@@ -38,21 +38,22 @@
 								</tr>
 							</thead>
 							<tbody>
+								{{#items}}
 								<tr class="cart_item">
 									<td class="cart-product-remove">
 										<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
 									</td>
 
 									<td class="cart-product-thumbnail">
-										<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
+										<a href="#"><img width="64" height="64" src="./art_imgs/prints/{{image}}" alt="{{name}}"></a>
 									</td>
 
 									<td class="cart-product-name">
-										<a href="#">Pink Printed Dress</a>
+										<a href="#">{{name}}</a>
 									</td>
 
 									<td class="cart-product-price">
-										<span class="amount">$19.99</span>
+										<span class="amount">{{subtotal}}</span>
 									</td>
 
 									<td class="cart-product-quantity">
@@ -62,69 +63,12 @@
 											<input type="button" value="+" class="plus">
 										</div>
 									</td>
-
 									<td class="cart-product-subtotal">
-										<span class="amount">$39.98</span>
+										<span class="amount">{{total}}</span>
 									</td>
 								</tr>
-								<tr class="cart_item">
-									<td class="cart-product-remove">
-										<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-									</td>
+								{{/items}}
 
-									<td class="cart-product-thumbnail">
-										<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/shoes-2.jpg" alt="Checked Canvas Shoes"></a>
-									</td>
-
-									<td class="cart-product-name">
-										<a href="#">Checked Canvas Shoes</a>
-									</td>
-
-									<td class="cart-product-price">
-										<span class="amount">$24.99</span>
-									</td>
-
-									<td class="cart-product-quantity">
-										<div class="quantity clearfix">
-											<input type="button" value="-" class="minus">
-											<input type="text" name="quantity" value="1" class="qty" />
-											<input type="button" value="+" class="plus">
-										</div>
-									</td>
-
-									<td class="cart-product-subtotal">
-										<span class="amount">$24.99</span>
-									</td>
-								</tr>
-								<tr class="cart_item">
-									<td class="cart-product-remove">
-										<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-									</td>
-
-									<td class="cart-product-thumbnail">
-										<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/tshirt-2.jpg" alt="Pink Printed Dress"></a>
-									</td>
-
-									<td class="cart-product-name">
-										<a href="#">Blue Men Tshirt</a>
-									</td>
-
-									<td class="cart-product-price">
-										<span class="amount">$13.99</span>
-									</td>
-
-									<td class="cart-product-quantity">
-										<div class="quantity clearfix">
-											<input type="button" value="-" class="minus">
-											<input type="text" name="quantity" value="3" class="qty" />
-											<input type="button" value="+" class="plus">
-										</div>
-									</td>
-
-									<td class="cart-product-subtotal">
-										<span class="amount">$41.97</span>
-									</td>
-								</tr>
 								<tr class="cart_item">
 									<td colspan="6">
 									</td>
@@ -132,7 +76,7 @@
 							</tbody>
 
 						</table>
-						<button href="shop.html" class="button shop-item-add-to-cart m-4 custom-shadow">Proceed to Checkout</button>
+						<button href="/shop/checkout" class="button shop-item-add-to-cart m-4 custom-shadow">Checkout</button>
 						</div>
 					</div>
 

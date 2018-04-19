@@ -14,6 +14,7 @@
     "debug": "~2.6.9",
     "dotenv": "^5.0.1",
     "express": "~4.15.5",
+    "express-session": "^1.15.6",
     "hjs": "~0.0.6",
     "hogan-middleware": "^0.2.2",
     "mongoose": "^5.0.4",
