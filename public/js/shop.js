@@ -51,7 +51,6 @@ if (window.location.href === "http://localhost:3000/shop/cart"){
   })
   .then(function(cart){
     console.log(cart)
-    // display the cart
     cart.forEach(function(item){
       item = item[0]
       var tableRow = $("<tr>").addClass("cart_item")
@@ -63,7 +62,7 @@ if (window.location.href === "http://localhost:3000/shop/cart"){
         .append('<a>'+item.name+'</a>')
       var itemPrice = $("<td>").addClass("cart-product-price")
         .append('<span class="amount">$'+item.price1+'</span>')
-      var itemQuantity= $("<td>").addClass("cart-product-price")
+      var itemQuantity= $("<td>").addClass("cart-product-quantity")
       var counter = $("<div>").addClass("quantity")
         counter.append('<input type="button" value="-" class="minus">')
         .append('<input type="text" name="quantity" value="1" class="qty" />')
@@ -74,5 +73,13 @@ if (window.location.href === "http://localhost:3000/shop/cart"){
       tableRow.append(removeIcon, itemImage, itemName, itemPrice, itemQuantity, itemTotal);
       $("#cart-list").append(tableRow)
     })
+  })
+  .catch(function(err){
+    console.log("error")
+    var tableRow = $("<tr>").addClass("cart_item")
+    var errorMessage = $("<p>").addClass("text-center")
+      .html("There doesn't appear to be anything in your cart yet")
+    tableRow.append(errorMessage)
+    $("#cart-list").append(errorMessage)
   })
 }
