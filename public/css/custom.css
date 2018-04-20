@@ -271,15 +271,12 @@ a {
   width: auto !important;
   border-radius: 3px;
   transition: all 0.2s cubic-bezier(.25,.8,.25,1);
-  color: white;
+  color: white !important;
   background-color: #292929 !important;
 }
 .shop-item-add-to-cart:hover{
   background-color: black !important;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-.custom-checkout{
 }
 
 
@@ -333,6 +330,13 @@ input[type=checkbox]{
 	border-radius: 100%;
 	position: relative;
 	box-shadow: 0px 1px 3px #333;
+}
+
+#cart-table{
+  /* min-height: 300px !important; */
+}
+.custom-thumb{
+  height: 10% !important;
 }
 
 .custom-checkbox label {

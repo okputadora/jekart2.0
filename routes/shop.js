@@ -1,8 +1,9 @@
-var express = require('express');
-var controllers = require('../controllers/')
-const galleryImport = require('../galleries')
+const express = require('express');
+const controllers = require('../controllers/');
+const galleryImport = require('../galleries');
 const galleries = galleryImport.galleries;
-var router = express.Router();
+const router = express.Router();
+
 
 router.get('/', (req, res, next) => {
   controller = controllers['prints']
@@ -33,18 +34,25 @@ router.get('/checkout', (req, res, next) => {
 })
 
 router.post('/:action', (req,res,next) => {
-    if (req.params.action === 'add'){
-      let itemId = req.body.id;
-      controllers['prints'].getByParam({_id: itemId})
-      .then(item => {
-        controllers['cart']
+    if (req.params.action === 'buildCart'){
+      let cart = JSON.parse(req.body.cart);
+      let promises = []
+      cart.forEach(item => {
+        promises.push(controllers['prints'].getByParam({_id: item}))
       })
-      console.log(itemId)
-      // check if there is a current session
-      //if not, create one
-      // add item to cart var
-      console.log("receving request from form")
-      res.send("200")
+      Promise.all(promises)
+      .then(cart => {
+        console.log(cart)
+        // check if there is a current session
+        //if not, create one
+        // add item to cart var
+        res.send(cart)
+      })
+      .catch(err => {
+        console.log("error")
+        console.log(err)
+        res.send("404")
+      })
     }
 })
 

@@ -25,7 +25,7 @@
 
 				<div class="container clearfix">
 
-					<div class="table-responsive">
+					<div id="cart-table" class="table-responsive">
 						<table class="table cart shop-container">
 							<thead>
 								<tr>
@@ -37,8 +37,8 @@
 									<th class="cart-product-subtotal">Total</th>
 								</tr>
 							</thead>
-							<tbody>
-								{{#items}}
+							<tbody id="cart-list">
+								<!-- {{#items}}
 								<tr class="cart_item">
 									<td class="cart-product-remove">
 										<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
@@ -67,7 +67,7 @@
 										<span class="amount">{{total}}</span>
 									</td>
 								</tr>
-								{{/items}}
+								{{/items}} -->
 
 								<tr class="cart_item">
 									<td colspan="6">
@@ -76,7 +76,7 @@
 							</tbody>
 
 						</table>
-						<button href="/shop/checkout" class="button shop-item-add-to-cart m-4 custom-shadow">Checkout</button>
+						<a href="/shop/checkout" class="button shop-item-add-to-cart m-4 custom-shadow">Checkout</a>
 						</div>
 					</div>
 
