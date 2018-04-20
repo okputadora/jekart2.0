@@ -15,13 +15,13 @@ module.exports = {
     })
   },
   getByParam: function(param){
-    console.log(param)
     return new Promise(function(resolve, reject){
       Prints.find(param, function(err, item) {
         if (err){
           reject(err)
           return
         }
+        console.log("returning a print item")
         resolve(item);
       })
     })

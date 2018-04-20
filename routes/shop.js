@@ -24,9 +24,38 @@ router.get('/', (req, res, next) => {
 router.get('/cart', (req, res, next) => {
   console.log("loading cart view")
   let cart = req.session.cart
-  console.log(cart)
-  res.render('cart', {
-    galleries: galleries,
+  console.log(cart.items)
+  let promises = [];
+  cart.items.forEach(item => {
+    // remember this returns lists because it can also be used with
+    // less specific params than id
+    promises.push(controllers['prints'].getByParam({_id: item.id}))
+  })
+  Promise.all(promises).then(resultsArr => {
+
+    const displayResultsArr = resultsArr.map((result, i) => {
+      let price = parseInt(result[0].price1)
+      let qty = parseInt(cart.items[i].qty)
+      if (cart.items[i].qty >= 3){price = result[0].price3}
+      else if (cart.items[i].qty === 2){price = result[0].price2}
+      let totalPrice = price*qty
+      return ({
+        name: result[0].name,
+        image: result[0].image1,
+        description: result[0].description,
+        price: price,
+        qty: qty,
+        total: totalPrice
+      })
+    })
+    console.log(displayResultsArr[0].image)
+    res.render('cart', {
+      galleries: galleries,
+      cart: displayResultsArr
+    })
+  })
+  .catch(err => {
+    console.log("error: ", err)
   })
 })
 
@@ -37,42 +66,16 @@ router.get('/checkout', (req, res, next) => {
 })
 
 router.post('/:action', (req,res,next) => {
-    console.log("starting cart")
-    console.log(req.session.cart)
     if (req.params.action === 'addToCart'){
       let oldCart = []
       if (req.session.cart){
         oldCart = req.session.cart.items
       }
-      console.log("gere")
       let cart = new Cart(oldCart)
-      console.log("cheer")
       cart.add(req.body.id, req.body.qty)
-      console.log("here")
       req.session.cart = cart;
-      console.log("ending cart")
-      console.log(req.session.cart)
       res.send("200")
     }
-    //   let cart = JSON.parse(req.body.cart);
-    //   let promises = []
-    //   cart.forEach(item => {
-    //     promises.push(controllers['prints'].getByParam({_id: item}))
-    //   })
-    //   Promise.all(promises)
-    //   .then(cart => {
-    //     console.log(cart)
-    //     // check if there is a current session
-    //     //if not, create one
-    //     // add item to cart var
-    //     res.send(cart)
-    //   })
-    //   .catch(err => {
-    //     console.log("error")
-    //     console.log(err)
-    //     res.send("404")
-    //   })
-    // }
 })
 
 router.get('/:item', (req,res,next) => {

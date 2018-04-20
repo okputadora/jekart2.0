@@ -38,6 +38,37 @@
 								</tr>
 							</thead>
 							<tbody id="cart-list">
+								{{#cart}}
+									<tr class="cart_item">
+									<td class="cart-product-remove">
+										<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+									</td>
+
+									<td class="cart-product">
+										<a href="#"><img class="custom-thumb" src="/art_imgs/prints/{{image}}" alt="{{name}}"></a>
+									</td>
+
+									<td class="cart-product-name">
+										<a href="#">{{name}}</a>
+									</td>
+
+									<td class="cart-product-price">
+										<span class="amount">${{price}}</span>
+									</td>
+
+									<td class="cart-product-quantity">
+										<div class="quantity clearfix">
+											<input type="button" value="-" class="minus">
+											<input type="text" name="quantity" value="{{qty}}" class="qty" />
+											<input type="button" value="+" class="plus">
+										</div>
+									</td>
+
+									<td class="cart-product-subtotal">
+										<span class="amount">${{total}}</span>
+									</td>
+								</tr>
+								{{/cart}}
 							</tbody>
 
 						</table>
