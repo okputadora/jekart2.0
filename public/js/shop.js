@@ -2,11 +2,12 @@
 $(".content-wrap").on("click", ".add-to-cart", function(e){
   e.preventDefault()
   animateCartIn(e)
-
+  var qty = $("#itemCount").val()
+  console.log(qty)
   $.ajax({
     url: '/shop/addToCart',
     type: 'POST',
-    data: {id: this.id, qty: 1}
+    data: {id: this.id, qty: qty}
   })
   .then(function(resp){
     console.log(resp)
@@ -14,6 +15,20 @@ $(".content-wrap").on("click", ".add-to-cart", function(e){
   })
 })
 
+// change qunatiies
+$(".content-wrap").on("click", "#addItem", function(){
+  var val = $("#itemCount").val()
+  val = parseInt(val) + 1
+  $("#itemCount").val(val);
+})
+
+$(".content-wrap").on("click", "#removeItem", function(){
+  var val = $("#itemCount").val()
+  val = parseInt(val) - 1
+  if (val > 0){
+    $("#itemCount").val(val)
+  }
+})
 
 function animateCartIn(e){
   $("#cartAdded")
