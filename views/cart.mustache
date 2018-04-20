@@ -45,7 +45,7 @@
 									</td>
 
 									<td class="cart-product">
-										<a href="#"><img class="custom-thumb" src="/art_imgs/prints/{{image}}" alt="{{name}}"></a>
+										<img class="custom-thumb" src="/art_imgs/prints/{{image}}" alt="{{name}}">
 									</td>
 
 									<td class="cart-product-name">
@@ -58,9 +58,9 @@
 
 									<td class="cart-product-quantity">
 										<div class="quantity clearfix">
-											<input type="button" value="-" class="minus">
-											<input type="text" name="quantity" value="{{qty}}" class="qty" />
-											<input type="button" value="+" class="plus">
+											<input id="minus-{{name}}"type="button" value="-" class="minus">
+	                    <input id="qty-{{name}}" type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="3" readonly/>
+	                    <input id="plus-{{name}}"type="button" value="+" class="plus">
 										</div>
 									</td>
 
@@ -72,6 +72,7 @@
 							</tbody>
 
 						</table>
+						<a id="update-cart" class="button shop-item-add-to-cart m-4 custom-shadow">update cart</a>
 						<a href="/shop/checkout" class="button shop-item-add-to-cart m-4 custom-shadow">Checkout</a>
 						</div>
 					</div>

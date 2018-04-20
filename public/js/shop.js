@@ -2,8 +2,8 @@
 $(".content-wrap").on("click", ".add-to-cart", function(e){
   e.preventDefault()
   animateCartIn(e)
-  if ($("#itemCount").val()){
-    var qty = $("#itemCount").val()
+  if ($(".qty").val()){
+    var qty = $this.val()
   }else{qty = 1}
 
   console.log(qty)
@@ -19,18 +19,24 @@ $(".content-wrap").on("click", ".add-to-cart", function(e){
 })
 
 // change qunatiies
-$(".content-wrap").on("click", "#addItem", function(){
-  var val = $("#itemCount").val()
+$(".content-wrap").on("click", ".plus", function(e){
+  console.log(e.target.id)
+  var id = e.target.id;
+  qtyId = id.slice(id.indexOf("-") + 1)
+  console.log(qtyId)
+  var val = $("#qty-"+qtyId).val()
   val = parseInt(val) + 1
-  $("#itemCount").val(val);
+  $("#qty-"+qtyId).val(val)
 })
 
-$(".content-wrap").on("click", "#removeItem", function(){
-  var val = $("#itemCount").val()
+$(".content-wrap").on("click", ".minus", function(){
+  console.log(e.target.id)
+  var id = e.target.id;
+  qtyId = id.slice(id.indexOf("-") + 1)
+  console.log(qtyId)
+  var val = $("#qty-"+qtyId).val()
   val = parseInt(val) - 1
-  if (val > 0){
-    $("#itemCount").val(val)
-  }
+  $("#qty-"+qtyId).val(val)
 })
 
 function animateCartIn(e){
