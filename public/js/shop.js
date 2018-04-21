@@ -2,8 +2,12 @@
 $(".content-wrap").on("click", ".add-to-cart", function(e){
   e.preventDefault()
   animateCartIn(e)
+  // if we're adding it from a page where you can select quantity
+  console.log($(".qty").val())
   if ($(".qty").val()){
-    var qty = $this.val()
+    // then grab that value
+    var qty = $(".qty").val()
+    console.log(qty)
   }else{qty = 1}
 
   console.log(qty)
@@ -19,7 +23,7 @@ $(".content-wrap").on("click", ".add-to-cart", function(e){
 
 // change qunatiies
 $(".content-wrap").on("click", ".plus", function(){
-  var id = this.is
+  var id = this.id
   qtyId = id.slice(id.indexOf("-") + 1)
   console.log(qtyId)
   var val = $("#qty-"+qtyId).val()
@@ -43,16 +47,33 @@ $(".content-wrap").on("click", ".remove", function(){
   id = this.id
   console.log(id)
   removeId = id.slice(id.indexOf("-") + 1)
+  console.log(id)
   $.ajax({
     url: '/shop/removeFromCart',
     type: "POST",
-    data: {id: id}
+    data: {id: removeId}
   }).then(function(result){
-    // remove the item
-    location.reload()
+    $("#"+removeId).remove()
   })
 })
 
+$("#update-cart").on("click", function(){
+  // grab the list items
+  var items = [];
+  $('.cart_item').each(function(){
+    var id = this.id;
+    var qty = $("#qty-" +id).val();
+    items.push({id: id, qty: qty});
+  })
+  items = JSON.stringify(items)
+  $.ajax({
+    url: '/shop/updateCart',
+    type: 'POST',
+    data: {items: items}
+  }).then(function(resp){
+    location.reload()
+  })
+})
 function animateCartIn(e){
   $("#cartAdded")
     .html('<i class="icon-shopping-cart"></i>')
