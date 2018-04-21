@@ -32,6 +32,7 @@
 									<th class="cart-product-remove">&nbsp;</th>
 									<th class="cart-product-thumbnail">&nbsp;</th>
 									<th class="cart-product-name">Product</th>
+									<th class="cart-product-framed">Framed</th>
 									<th class="cart-product-price">Price</th>
 									<th class="cart-product-quantity">Quantity</th>
 									<th class="cart-product-subtotal">Total</th>
@@ -51,7 +52,12 @@
 									<td class="cart-product-name">
 										<a href="#">{{name}}</a>
 									</td>
-
+									<td class="cart-product-framed">
+										<div class="switch">
+											<input id="switch-toggle-{{name}}" class="switch-toggle switch-rounded-mini switch-toggle-round" type="checkbox">
+											<label for="switch-toggle-{{name}}"></label>
+										</div>
+									</td>
 									<td class="cart-product-price">
 										<span class="amount">${{price}}</span>
 									</td>
@@ -87,6 +93,11 @@
 
 
     {{> footer }}
+		<script>
+
+		jQuery(".bt-switch").bootstrapSwitch();
+
+	</script>
 	</div>
   </body>
   </html>

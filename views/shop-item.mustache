@@ -35,31 +35,36 @@
               </div>
               <div class="col_two_fifth product-desc">
 								<h2>{{name}}</h2>
-                <div class="product-price"><ins class="black-text">${{price1}} <span class="small-text">($90 framed)</span></ins></div>
+                <div class="product-price"><ins class="black-text">${{price1}}</ins></div>
                 <div class="clear"></div>
                 <div class="line"></div>
-                <form class="nobottommargin clearfix">
-									<!-- <p>We're still setting up the shop. check back soon! If you're interested in purchasing a print now, just send me a
-										<a href="/contact"><strong>message</strong></a></p> -->
-                  <div class="quantity custom-shadow clearfix">
-                    <input id="minus-{{id}}"type="button" value="-" class="minus">
-                    <input id="qty-{{id}}" type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="3" readonly/>
-                    <input id="plus-{{id}}"type="button" value="+" class="plus">
-                  </div>
-									<div class="quantity clearfix">
-										<div class="custom-checkbox">
-											<h4 class="framed">Framed</h4>
-											<input type="checkbox" id="checkbox-input" value="1" class="inline-checkbox custom-checkbox custom-shadow" />
-											<label for="checkbox-input"></label>
-										</div>
+								<div class="row">
+									<div class="quantity custom-shadow clearfix">
+										<input id="minus-{{id}}"type="button" value="-" class="minus">
+										<input id="qty-{{id}}" type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="3" readonly/>
+										<input id="plus-{{id}}"type="button" value="+" class="plus">
 									</div>
+								</div>
+								<div class="row">
+									<div class="my-3">
+										<h4>Framed (+$50)<span>
+											<div class="switch">
+												<input id="switch-toggle-2" class="switch-toggle switch-toggle-round" type="checkbox">
+												<label for="switch-toggle-2"></label>
+											</div>
+										</span></h4>
+									</div>
+								</div>
+								<div class="row">
 									<div class="clearfix">
 										<button id={{id}} class="button custom-shadow add-to-cart shop-item-add-to-cart ">Add to cart</button>
 									</div>
+								</div>
+								<div class="row">
 									<div class="clearfix">
 										<a id="checkout" href="/shop/cart" class="button custom-shadow shop-item-add-to-cart">checkout</a>
 									</div>
-                </form>
+								</div>
                 <div class="clear"></div>
                 <div class="line"></div>
                 <ul class="iconlist">
@@ -107,6 +112,11 @@
       </div>
     </section>
     {{> footer }}
+		<script>
+
+		jQuery(".bt-switch").bootstrapSwitch();
+
+	</script>
 	</div>
   </body>
   </html>

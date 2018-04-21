@@ -16,7 +16,7 @@
           <div style="padding-left: 10px;"class="menu-title" style='width: 100%'><a href='/shop'>shop </a>
             <img style="margin:5px;" src="/images/icons/submenu.png"><a href='/cart'>cart </a>
             <img style="margin:5px;" src="/images/icons/submenu.png"><span>checkout</span></div>
-          <a href="/cart"><i class="icon-shopping-cart right custom-cart"></i></a>
+          <a href="./cart"><i class="icon-shopping-cart right custom-cart"></i></a>
         </div>
       </div>
     </div>
@@ -37,6 +37,7 @@
 										<tr>
 											<th class="cart-product-thumbnail">&nbsp;</th>
 											<th class="cart-product-name">Product</th>
+											<th class="cart-product-framed">Framed</th>
 											<th class="cart-product-price">Price</th>
 											<th class="cart-product-quantity">Quantity</th>
 											<th class="cart-product-subtotal">Total</th>
@@ -50,6 +51,9 @@
 											</td>
 											<td class="cart-product-name">
 												<a href="#">{{name}}</a>
+											</td>
+											<td class="cart-product-framed">
+												<span>no</span>
 											</td>
 											<td class="cart-product-price">
 												<span class="amount">${{price}}</span>
@@ -126,9 +130,9 @@
 								<script
 								src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 								data-key=""
-								data-amount="{{price}}"
+								data-amount="{{grandTotal}}00"
 								data-name="Joseph Edgerton Krause"
-								data-description="{{cart}}"
+								data-description=""
 								data-image="./checkoutlogo.png"
 								data-locale="auto">
 								</script>

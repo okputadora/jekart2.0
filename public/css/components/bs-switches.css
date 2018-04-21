@@ -287,7 +287,7 @@ input.switch-toggle-round + label:after {
 	transition: margin 0.4s;
 }
 
-input.switch-toggle-round:checked + label:before { background-color: #1ABC9C; }
+input.switch-toggle-round:checked + label:before { background-color: black; }
 input.switch-toggle-round:checked + label:after { margin-left: 30px; }
 
 /* --------------------------------------------------------------
@@ -509,4 +509,3 @@ input.switch-flat-xlarge.switch-toggle-flat + label:after {
 }
 
 input.switch-flat-xlarge.switch-toggle-flat:checked + label:after { margin-left: 60px; }
-
