@@ -13,15 +13,13 @@ $(".content-wrap").on("click", ".add-to-cart", function(e){
     data: {id: this.id, qty: qty}
   })
   .then(function(resp){
-    console.log(resp)
     animateCartOut()
   })
 })
 
 // change qunatiies
-$(".content-wrap").on("click", ".plus", function(e){
-  console.log(e.target.id)
-  var id = e.target.id;
+$(".content-wrap").on("click", ".plus", function(){
+  var id = this.is
   qtyId = id.slice(id.indexOf("-") + 1)
   console.log(qtyId)
   var val = $("#qty-"+qtyId).val()
@@ -30,13 +28,29 @@ $(".content-wrap").on("click", ".plus", function(e){
 })
 
 $(".content-wrap").on("click", ".minus", function(){
-  console.log(e.target.id)
-  var id = e.target.id;
+  var id = this.id
   qtyId = id.slice(id.indexOf("-") + 1)
   console.log(qtyId)
   var val = $("#qty-"+qtyId).val()
-  val = parseInt(val) - 1
-  $("#qty-"+qtyId).val(val)
+  if (val > 1){
+    val = parseInt(val) - 1
+    $("#qty-"+qtyId).val(val)
+  }
+})
+
+$(".content-wrap").on("click", ".remove", function(){
+  console.log("HELLO")
+  id = this.id
+  console.log(id)
+  removeId = id.slice(id.indexOf("-") + 1)
+  $.ajax({
+    url: '/shop/removeFromCart',
+    type: "POST",
+    data: {id: id}
+  }).then(function(result){
+    // remove the item
+    location.reload()
+  })
 })
 
 function animateCartIn(e){

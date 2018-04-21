@@ -41,7 +41,7 @@
 								{{#cart}}
 									<tr class="cart_item">
 									<td class="cart-product-remove">
-										<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+										<a id="remove-{{id}}"class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
 									</td>
 
 									<td class="cart-product">
@@ -58,9 +58,9 @@
 
 									<td class="cart-product-quantity">
 										<div class="quantity clearfix">
-											<input id="minus-{{name}}"type="button" value="-" class="minus">
-	                    <input id="qty-{{name}}" type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="3" readonly/>
-	                    <input id="plus-{{name}}"type="button" value="+" class="plus">
+											<input id="minus-{{id}}"type="button" value="-" class="minus">
+	                    <input id="qty-{{id}}" type="text" step="1" min="1"  name="quantity" value="{{qty}}" title="Qty" class="qty" size="3" readonly/>
+	                    <input id="plus-{{id}}"type="button" value="+" class="plus">
 										</div>
 									</td>
 
@@ -72,7 +72,7 @@
 							</tbody>
 
 						</table>
-						<a id="update-cart" class="button shop-item-add-to-cart m-4 custom-shadow">update cart</a>
+						<a id="update-cart" class="button shop-item-add-to-cart m-4 custom-shadow" disabled>update cart</a>
 						<a href="/shop/checkout" class="button shop-item-add-to-cart m-4 custom-shadow">Checkout</a>
 						</div>
 					</div>

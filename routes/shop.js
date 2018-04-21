@@ -45,7 +45,8 @@ router.get('/cart', (req, res, next) => {
         description: result[0].description,
         price: price,
         qty: qty,
-        total: totalPrice
+        total: totalPrice,
+        id: result[0]._id
       })
     })
     console.log(displayResultsArr[0].image)
@@ -66,16 +67,26 @@ router.get('/checkout', (req, res, next) => {
 })
 
 router.post('/:action', (req,res,next) => {
-    if (req.params.action === 'addToCart'){
-      let oldCart = []
-      if (req.session.cart){
-        oldCart = req.session.cart.items
-      }
-      let cart = new Cart(oldCart)
-      cart.add(req.body.id, req.body.qty)
-      req.session.cart = cart;
-      res.send("200")
+  if (req.params.action === 'addToCart'){
+    let oldCart = []
+    if (req.session.cart){
+      oldCart = req.session.cart.items
     }
+    let cart = new Cart(oldCart)
+    cart.add(req.body.id, req.body.qty)
+    req.session.cart = cart;
+    res.send("200")
+  }
+  else if (req.params.action === "removeFromCart"){
+    let oldCart = []
+    if (req.session.cart){
+      oldCart = req.session.cart.items
+    }
+    let cart = new Cart(oldCart)
+    cart.remove(req.body.id, req.body.qty)
+    req.session.cart = cart;
+    res.send("200")
+  }
 })
 
 router.get('/:item', (req,res,next) => {

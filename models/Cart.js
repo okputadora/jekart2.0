@@ -15,5 +15,19 @@ module.exports = function Cart(oldCart){
       let newItem = {id: id, qty: qty};
       this.items.push(newItem)
     }
+  },
+  this.remove = (id) => {
+    this.items.splice(this.items.indexOf(id), 1)
+  }
+  this.update = (id, qty) => {
+    this.items.forEach(item => {
+      if (item.id === id){
+        item.qty = qty;
+      }
+    })
+  },
+
+  this.clearAll = () => {
+    
   }
 }
