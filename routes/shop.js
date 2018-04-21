@@ -2,6 +2,7 @@ const express = require('express');
 const controllers = require('../controllers/');
 const galleryImport = require('../galleries');
 const Cart = require('../models/cart')
+const utils = require('../utils/')
 const galleries = galleryImport.galleries;
 const router = express.Router();
 
@@ -22,36 +23,12 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/cart', (req, res, next) => {
-  console.log("loading cart view")
   let cart = req.session.cart
-  console.log(cart.items)
-  let promises = [];
-  cart.items.forEach(item => {
-    // remember this returns lists because it can also be used with
-    // less specific params than id
-    promises.push(controllers['prints'].getByParam({_id: item.id}))
-  })
-  Promise.all(promises).then(resultsArr => {
-
-    const displayResultsArr = resultsArr.map((result, i) => {
-      let price = parseInt(result[0].price1)
-      let qty = parseInt(cart.items[i].qty)
-      if (cart.items[i].qty >= 3){price = result[0].price3}
-      else if (cart.items[i].qty === 2){price = result[0].price2}
-      let totalPrice = price*qty
-      return ({
-        name: result[0].name,
-        image: result[0].image1,
-        description: result[0].description,
-        price: price,
-        qty: qty,
-        total: totalPrice,
-        id: result[0]._id
-      })
-    })
+  utils.displayCart(cart)
+  .then((displayCart) => {
     res.render('cart', {
       galleries: galleries,
-      cart: displayResultsArr
+      cart: displayCart
     })
   })
   .catch(err => {
@@ -60,8 +37,19 @@ router.get('/cart', (req, res, next) => {
 })
 
 router.get('/checkout', (req, res, next) => {
-  console.log(req.session.cart)
-  res.render('checkout', {
+  let cart = req.session.cart;
+  utils.displayCart(cart)
+  .then((displayCart) => {
+    let grandTotal = 0;
+    displayCart.forEach(item => {
+      grandTotal += (parseInt(item.price) * parseInt(item.qty))
+    })
+    res.render('checkout', {
+      galleries: galleries,
+      cart: displayCart,
+      grandTotal: grandTotal
+    })
+
   })
 })
 

@@ -37,106 +37,48 @@
 										<tr>
 											<th class="cart-product-thumbnail">&nbsp;</th>
 											<th class="cart-product-name">Product</th>
+											<th class="cart-product-price">Price</th>
 											<th class="cart-product-quantity">Quantity</th>
 											<th class="cart-product-subtotal">Total</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="cart_item">
-											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
+										{{#cart}}
+											<tr class="cart_item" id={{id}}>
+											<td class="cart-product">
+												<img class="custom-thumb" src="/art_imgs/prints/{{image}}" alt="{{name}}">
 											</td>
-
 											<td class="cart-product-name">
-												<a href="#">Pink Printed Dress</a>
+												<a href="#">{{name}}</a>
 											</td>
-
+											<td class="cart-product-price">
+												<span class="amount">${{price}}</span>
+											</td>
 											<td class="cart-product-quantity">
 												<div class="quantity clearfix">
-													1x2
+													{{qty}}
 												</div>
 											</td>
-
 											<td class="cart-product-subtotal">
-												<span class="amount">$39.98</span>
+												<span class="amount">${{total}}</span>
 											</td>
 										</tr>
-										<tr class="cart_item">
-											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/shoes-2.jpg" alt="Checked Canvas Shoes"></a>
-											</td>
-
-											<td class="cart-product-name">
-												<a href="#">Checked Canvas Shoes</a>
-											</td>
-
-											<td class="cart-product-quantity">
-												<div class="quantity clearfix">
-													1x1
-												</div>
-											</td>
-
-											<td class="cart-product-subtotal">
-												<span class="amount">$24.99</span>
-											</td>
-										</tr>
-										<tr class="cart_item">
-											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/tshirt-2.jpg" alt="Pink Printed Dress"></a>
-											</td>
-
-											<td class="cart-product-name">
-												<a href="#">Blue Men Tshirt</a>
-											</td>
-
-											<td class="cart-product-quantity">
-												<div class="quantity clearfix">
-													1x3
-												</div>
-											</td>
-
-											<td class="cart-product-subtotal">
-												<span class="amoun">$41.97</span>
-											</td>
-										</tr>
+										{{/cart}}
 									</tbody>
-
 								</table>
 							</div>
 						</div>
-						<div class="col-lg-12 py-3 shop-container m-3">
-							<h4>Cart Totals</h4>
-
-							<div class="table-responsive">
-								<table class="table cart">
+							<div class="col-lg-12 py-3 m-3 shop-container">
+								<h4>Cart Totals</h4>
+								<div class="table-responsive">
+									<table class="table cart">
 									<tbody>
-									{{#items}}
-										<tr class="cart_item">
-											<td class="notopborder cart-product-name">
-												<strong>Cart Subtotal</strong>
-											</td>
-
-											<td class="notopborder cart-product-name text-right">
-												<span class="amount">${{subtotal}}</span>
-											</td>
-										</tr>
-										<tr class="cart_item">
-											<td class="cart-product-name">
-												<strong>Shipping</strong>
-											</td>
-
-											<td class="cart-product-name text-right">
-												<span class="amount">{{shipping}}</span>
-											</td>
-										</tr>
-										{{/items}}
 										<tr class="cart_item">
 											<td class="cart-product-name">
 												<strong>Total</strong>
 											</td>
-
 											<td class="cart-product-name text-right">
-												<span class="amount"><strong>$106.94</strong></span>
+												<span class="amount"><strong>${{grandTotal}}</strong></span>
 											</td>
 										</tr>
 									</tbody>
