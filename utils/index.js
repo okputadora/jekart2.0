@@ -2,12 +2,11 @@ const controllers = require('../controllers/')
 const Promise = require('bluebird')
 
 module.exports = {
-  displayCart: (cart) => {
+  displayCart: (cart, page) => {
     return new Promise((resolve, reject) => {
       console.log("step 1")
       let promises = []
       cart.items.forEach(item => {
-        console.log("should be any items")
         console.log(item.id)
         console.log(item.framed)
         promises.push(controllers['prints'].getByParam({_id: item.id}))
@@ -17,12 +16,20 @@ module.exports = {
           let price = parseInt(result[0].price1)
           let qty = parseInt(cart.items[i].qty)
           let framed = cart.items[i].framed
-          if (framed == 'true'){
-            framed = 'checked'
-            price = price + 50
-          }
+          let id = result[0]._id
+          console.log("framed: ", framed)
+          // well this isn't great. how come i have a string sometimes
           if (cart.items[i].qty >= 3){price = result[0].price3}
           else if (cart.items[i].qty === 2){price = result[0].price2}
+          if ((framed == 'true' || framed === true) && page === "cart"){
+            framed = 'checked'
+            price = price + 50
+            id = id + ".F"
+          }
+          else if ((framed == 'true' || framed === true ) && page === "checkout"){
+            framed = 'yes'
+          }
+          else {framed = 'no'}
           let totalPrice = price*qty
           // edit id so that the same painting has unique id based on framed value
           return ({
@@ -33,7 +40,7 @@ module.exports = {
             price: price,
             qty: qty,
             total: totalPrice,
-            id: result[0]._id
+            id: id
           })
         })
         resolve(displayResultsArr)

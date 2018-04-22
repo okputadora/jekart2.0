@@ -61,8 +61,14 @@ $("#update-cart").on("click", function(){
   var items = [];
   $('.cart_item').each(function(){
     var id = this.id;
+    console.log(id)
     var qty = $("#qty-" +id).val();
-    items.push({id: id, qty: qty});
+    var framed = $("#framed-"+id).is(":checked")
+    console.log(framed)
+    if (id.indexOf(".") > -1){
+      id = id.slice(0, id.indexOf("."))
+    }
+    items.push({id: id, qty: qty, framed: framed});
   })
   items = JSON.stringify(items)
   $.ajax({

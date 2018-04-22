@@ -24,8 +24,9 @@ router.get('/', (req, res, next) => {
 
 router.get('/cart', (req, res, next) => {
   let cart = req.session.cart
-  utils.displayCart(cart)
+  utils.displayCart(cart, "cart")
   .then((displayCart) => {
+    console.log(displayCart)
     res.render('cart', {
       galleries: galleries,
       cart: displayCart
@@ -41,7 +42,7 @@ router.get('/cart', (req, res, next) => {
 
 router.get('/checkout', (req, res, next) => {
   let cart = req.session.cart;
-  utils.displayCart(cart)
+  utils.displayCart(cart, "checkout")
   .then((displayCart) => {
     let grandTotal = 0;
     displayCart.forEach(item => {
@@ -53,10 +54,14 @@ router.get('/checkout', (req, res, next) => {
       grandTotal: grandTotal
     })
   })
+  .catch((err) => {
+    res.render('checkout', {
+      galleries: galleries,
+    })
+  })
 })
 
 router.post('/:action', (req,res,next) => {
-  
   if (req.params.action === 'addToCart'){
     let oldCart = []
     if (req.session.cart){
@@ -84,11 +89,10 @@ router.post('/:action', (req,res,next) => {
     res.send("200")
   }
   else if (req.params.action === "updateCart"){
-    console.log("how bout here")
     let items = JSON.parse(req.body.items);
-    console.log(items)
-    console.log("hello")
-    req.session.cart.items = items;
+    let cart = new Cart(items)
+    console.log(cart)
+    req.session.cart = cart;
     res.send(200)
   }
 })
