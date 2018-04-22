@@ -1,20 +1,19 @@
 // Add to cart
 $(".content-wrap").on("click", ".add-to-cart", function(e){
-  e.preventDefault()
-  animateCartIn(e)
+  e.preventDefault();
+  animateCartIn(e);
   // if we're adding it from a page where you can select quantity
-  console.log($(".qty").val())
   if ($(".qty").val()){
     // then grab that value
-    var qty = $(".qty").val()
-    console.log(qty)
-  }else{qty = 1}
+    var framed = $(".framed").is(":checked");
+    var qty = $(".qty").val();
+  }else{qty = 1; framed = false;}
 
   console.log(qty)
   $.ajax({
     url: '/shop/addToCart',
     type: 'POST',
-    data: {id: this.id, qty: qty}
+    data: {id: this.id, qty: qty, framed: framed}
   })
   .then(function(resp){
     animateCartOut()

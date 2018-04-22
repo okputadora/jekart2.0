@@ -32,7 +32,10 @@ router.get('/cart', (req, res, next) => {
     })
   })
   .catch(err => {
-    console.log("error: ", err)
+    res.render('cart', {
+      galleries: galleries,
+    })
+    // console.log("error: ", err)
   })
 })
 
@@ -49,20 +52,24 @@ router.get('/checkout', (req, res, next) => {
       cart: displayCart,
       grandTotal: grandTotal
     })
-
   })
 })
 
 router.post('/:action', (req,res,next) => {
+  
   if (req.params.action === 'addToCart'){
-    console.log("whats going on ")
     let oldCart = []
     if (req.session.cart){
       oldCart = req.session.cart.items
     }
+    console.log("creating new cart")
     let cart = new Cart(oldCart)
-    cart.add(req.body.id, req.body.qty)
+    console.log("cart created")
+    console.log(req.body.id, req.body.qty, req.body.framed)
+    cart.add(req.body.id, req.body.qty, req.body.framed)
+    console.log("added new item")
     req.session.cart = cart;
+    console.log(cart)
     res.send(200)
   }
   else if (req.params.action === "removeFromCart"){
