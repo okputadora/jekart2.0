@@ -24,19 +24,25 @@ router.get('/', (req, res, next) => {
 
 router.get('/cart', (req, res, next) => {
   let cart = req.session.cart
-  utils.displayCart(cart, "cart")
-  .then((displayCart) => {
-    console.log(displayCart)
-    res.render('cart', {
-      galleries: galleries,
-      cart: displayCart
+  if (cart){
+    utils.displayCart(cart, "cart")
+    .then((displayCart) => {
+      console.log(displayCart)
+      res.render('cart', {
+        galleries: galleries,
+        cart: displayCart
+      })
     })
-  })
-  .catch(err => {
-    res.render('cart', {
-      galleries: galleries,
+    .catch(err => {
+      res.render('cart', {
+        galleries: galleries,
+      })
+      // console.log("error: ", err)
     })
-    // console.log("error: ", err)
+    return;
+  }
+  res.render('cart', {
+    galleries: galleries,
   })
 })
 
@@ -90,6 +96,7 @@ router.post('/:action', (req,res,next) => {
   }
   else if (req.params.action === "updateCart"){
     let items = JSON.parse(req.body.items);
+    console.log("updated items: ", items)
     let cart = new Cart(items)
     console.log(cart)
     req.session.cart = cart;

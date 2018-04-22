@@ -22,10 +22,14 @@ $(".content-wrap").on("click", ".add-to-cart", function(e){
 
 // change qunatiies
 $(".content-wrap").on("click", ".plus", function(){
+  console.log("Cluick")
   var id = this.id
+  console.log(id)
   qtyId = id.slice(id.indexOf("-") + 1)
   console.log(qtyId)
+  console.log(qtyId)
   var val = $("#qty-"+qtyId).val()
+  console.log($("#qty-"+qtyId).val())
   val = parseInt(val) + 1
   $("#qty-"+qtyId).val(val)
 })
@@ -65,9 +69,14 @@ $("#update-cart").on("click", function(){
     var qty = $("#qty-" +id).val();
     var framed = $("#framed-"+id).is(":checked")
     console.log(framed)
-    if (id.indexOf(".") > -1){
-      id = id.slice(0, id.indexOf("."))
+    // strip the display id
+    if (id.indexOf("_") > -1){
+      console.log("stripping _")
+      id = id.slice(0, id.indexOf("_"))
+      console.log(id)
     }
+    console.log(qty)
+    console.log(id, qty, framed)
     items.push({id: id, qty: qty, framed: framed});
   })
   items = JSON.stringify(items)
