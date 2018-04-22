@@ -34,6 +34,10 @@ $(".content-wrap").on("click", ".plus", function(){
   $("#qty-"+qtyId).val(val)
 })
 
+$(".content-wrap").on("change", ".edit", function(){
+  $("#update-cart").prop("disabled", false);
+  $("#checkout").prop("disabled", true);
+})
 $(".content-wrap").on("click", ".minus", function(){
   var id = this.id
   qtyId = id.slice(id.indexOf("-") + 1)
@@ -87,6 +91,10 @@ $("#update-cart").on("click", function(){
   }).then(function(resp){
     location.reload()
   })
+})
+
+$("#checkout").on("click", function(){
+  window.location = "/shop/checkout";
 })
 function animateCartIn(e){
   $("#cartAdded")
