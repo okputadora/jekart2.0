@@ -309,9 +309,8 @@ button[disbaled]:hover{
   opacity: 0;
 }
 
-.custom-radio{
-  color: black !important;
-  /* background: black !important; */
+.radio-style:checked + .radio-style-1-label:before {
+    background: #292929;
 }
 .small-text{
   font-size: 15px;

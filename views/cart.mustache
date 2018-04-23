@@ -24,9 +24,10 @@
 			<div class="content-wrap">
 
 				<div class="container clearfix">
-
+					<form action="/shop/checkout" method="POST">
 					<div id="cart-table" class="table-responsive">
 						<table class="table cart shop-container">
+							<h4>Your orders</h4>
 							<thead>
 								<tr>
 									<th class="cart-product-remove">&nbsp;</th>
@@ -78,25 +79,23 @@
 							</tbody>
 
 						</table>
+						<button id="update-cart" class="button shop-item-add-to-cart m-4 custom-shadow" disabled>update cart</button>
 						<div class="table-responsive">
 							<table class="table cart">
-							<thead>
-								<th>Standard Shipping</th>
-								<th>Local PickUp</th>
-							</thead>
+								<h4>Shipping options</h4>
 							<tbody>
 								<tr class="cart_item">
 									<td class="standard-shipping">
 										<p>A description of the standard shipping costs</p>
 										<div>
-											<input id="radio-1" class="radio-style" name="radio-group-1" type="radio" checked>
+											<input id="radio-1" class="radio-style" name="radio-group-1" type="radio" value="delivery" checked>
 											<label for="radio-1" class="radio-style-1-label">standard shipping</label>
 										</div>
 									</td>
 									<td class="local-pickup">
 										<p>A description of how and where to pick stuff up</p>
 										<div>
-											<input id="radio-2" class="radio-style" name="radio-group-1" type="radio">
+											<input id="radio-2" class="radio-style" name="radio-group-1" value="pickup" type="radio">
 											<label for="radio-2" class="radio-style-1-label">Local pickup</label>
 										</div>
 									</td>
@@ -104,9 +103,11 @@
 							</tbody>
 						</table>
 					</div>
-						<button id="update-cart" class="button shop-item-add-to-cart m-4 custom-shadow" disabled>update cart</button>
-						<button id="checkout" class="button shop-item-add-to-cart m-4 custom-shadow">Checkout</button>
+
+						<!-- // make this submit a form that handles the local/delivery radiobutton -->
+						<input type="submit" id="checkout" value="checkout" class="button shop-item-add-to-cart m-4 custom-shadow"/>
 						</div>
+						</form>
 					</div>
 
 
@@ -121,7 +122,7 @@
     {{> footer }}
 		<script>
 
-		jQuery(".bt-switch").bootstrapSwitch();
+		// jQuery(".bt-switch").bootstrapSwitch();
 
 	</script>
 	</div>

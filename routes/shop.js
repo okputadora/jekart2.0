@@ -46,8 +46,15 @@ router.get('/cart', (req, res, next) => {
   })
 })
 
-router.get('/checkout', (req, res, next) => {
+router.post('/checkout', (req, res, next) => {
+  console.log("checkin out!")
   let cart = req.session.cart;
+  let shipping = false;
+  let pickup = false;
+  if (req.body['radio-group-1'] === "delivery"){
+    shipping = true;
+  }else{pickup = true;}
+  console.log(shipping)
   utils.displayCart(cart, "checkout")
   .then((displayCart) => {
     let grandTotal = 0;
@@ -57,7 +64,9 @@ router.get('/checkout', (req, res, next) => {
     res.render('checkout', {
       galleries: galleries,
       cart: displayCart,
-      grandTotal: grandTotal
+      grandTotal: grandTotal,
+      shipping: shipping,
+      pickup: pickup
     })
   })
   .catch((err) => {

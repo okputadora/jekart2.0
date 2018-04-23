@@ -1,0 +1,49 @@
+<div class="col-lg-6 offset-lg-3 py-3 mt-3 shop-container">
+  <h3 class="center">Shipping Address</h3>
+
+  <form id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="post">
+
+    <div class="col_full">
+      <label for="shipping-form-name">Name:</label>
+      <input type="text" id="shipping-form-name" name="shipping-form-name" value="" class="sm-form-control" />
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="col_full">
+      <label for="shipping-form-address">Address:</label>
+      <input type="text" id="shipping-form-address" name="shipping-form-address" value="" class="sm-form-control" />
+    </div>
+
+    <div class="col_full">
+      <input type="text" id="shipping-form-address2" name="shipping-form-adress" value="" class="sm-form-control" />
+    </div>
+
+    <div class="col_full">
+      <label for="shipping-form-city">City / Town</label>
+      <input type="text" id="shipping-form-city" name="shipping-form-city" value="" class="sm-form-control" />
+    </div>
+
+    <div class="col_full">
+      <label for="shipping-form-zipcode">Zip Code</label>
+      <input type="text" id="shipping-form-zipcode" name="shipping-form-zipcode" value="" class="sm-form-control" />
+    </div>
+
+    <div class="col_full">
+      <label for="shipping-form-message">Notes <small>*</small></label>
+      <textarea class="sm-form-control" id="shipping-form-message" name="shipping-form-message" rows="6" cols="30"></textarea>
+    </div>
+
+  </form>
+  <form action="charge" method="POST">
+    <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key=""
+    data-amount="{{grandTotal}}00"
+    data-name="Joseph Edgerton Krause"
+    data-description=""
+    data-image="./checkoutlogo.png"
+    data-locale="auto">
+    </script>
+  </form>
+</div>

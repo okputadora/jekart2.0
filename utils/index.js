@@ -29,11 +29,11 @@ module.exports = {
             id = id + "_F"
           }
           else if ((framed == 'true' || framed === true ) && page === "checkout"){
-            framed = 'yes'
+            framed = 'Yes'
             price = price + 50
             id = id + "_F"
           }
-          else {framed = 'no'}
+          else {framed = 'No'}
           let totalPrice = price*qty
           // edit id so that the same painting has unique id based on framed value
           return ({

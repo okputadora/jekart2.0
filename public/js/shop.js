@@ -93,14 +93,6 @@ $("#update-cart").on("click", function(){
   })
 })
 
-$("#checkout").on("click", function(){
-  var shipping = "sDeliv";
-  if ($("#radio-2").is(":checked")){
-    shipping = 'lPickup'
-  }
-  console.log("shipping ,", shipping)
-  window.location = "/shop/checkout";
-})
 function animateCartIn(e){
   $("#cartAdded")
     .html('<i class="icon-shopping-cart"></i>')
