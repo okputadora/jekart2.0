@@ -71,6 +71,14 @@ router.post('/checkout', (req, res, next) => {
       pickup = true;
       grandTotal = cartTotal - 5;
     }
+    // update the cart with this info
+    req.session.cart.shippingCost = shippingCost;
+    req.session.cart.cartTotal = cartTotal;
+    req.session.cart.grandTotal = grandTotal;
+    console.log("cart updated: ", req.session.cart)
+    // display the results
+    let pk = process.env.STRIPE_PK;
+    console.log(pk)
     res.render('checkout', {
       galleries: galleries,
       cart: displayCart,
@@ -78,7 +86,8 @@ router.post('/checkout', (req, res, next) => {
       grandTotal: grandTotal,
       shipping: shipping,
       pickup: pickup,
-      shippingCost: shippingCost
+      shippingCost: shippingCost,
+      pk_key: pk
     })
   })
   .catch((err) => {

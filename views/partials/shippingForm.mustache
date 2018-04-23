@@ -35,15 +35,23 @@
     </div>
 
   </form>
-  <form action="charge" method="POST">
+  <form action="/stripe" method="POST">
     <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key=""
+    data-key="pk_test_we5yiehWWU4eB6tENaAFf2XV"
     data-amount="{{grandTotal}}00"
     data-name="Joseph Edgerton Krause"
     data-description=""
-    data-image="./checkoutlogo.png"
+    data-image="/checkoutlogo.png"
     data-locale="auto">
     </script>
+    <script>
+      // hide default stripe button
+      document.getElementsByClassName('stripe-button-el')[0].style.display ="none"
+      var child = document.getElementsByClassName('stripe-button-el')[0].childNodes;
+      console.log(child)
+      child[0].style.display = 'none';
+    </script>
+    <button type="submit" class="button shop-item-add-to-cart custom-shadow">Pay with card</button>
   </form>
 </div>

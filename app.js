@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const api = require('./routes/api');
-const stripe = require('./routes/stripe');
+const stripe = require('./routes/checkout');
 const shop = require('./routes/shop');
 
 require('dotenv').config();
