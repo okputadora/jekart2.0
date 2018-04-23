@@ -34,7 +34,7 @@ $(".content-wrap").on("click", ".plus", function(){
   $("#qty-"+qtyId).val(val)
 })
 
-$(".content-wrap").on("change", ".edit", function(){
+$(".content-wrap").on("click", ".edit", function(){
   $("#update-cart").prop("disabled", false);
   $("#checkout").prop("disabled", true);
 })
@@ -94,6 +94,11 @@ $("#update-cart").on("click", function(){
 })
 
 $("#checkout").on("click", function(){
+  var shipping = "sDeliv";
+  if ($("#radio-2").is(":checked")){
+    shipping = 'lPickup'
+  }
+  console.log("shipping ,", shipping)
   window.location = "/shop/checkout";
 })
 function animateCartIn(e){

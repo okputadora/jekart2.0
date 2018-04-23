@@ -64,9 +64,9 @@
 
 									<td class="cart-product-quantity">
 										<div class="quantity clearfix">
-											<input id="minus-{{id}}"type="button" value="-" class="minus">
-	                    <input id="qty-{{id}}" type="text" step="1" min="1"  name="quantity" value="{{qty}}" title="Qty" class="qty edit" size="3" readonly/>
-	                    <input id="plus-{{id}}"type="button" value="+" class="plus">
+											<input id="minus-{{id}}"type="button" value="-" class="minus edit">
+	                    <input id="qty-{{id}}" type="text" step="1" min="1"  name="quantity" value="{{qty}}" title="Qty" class="qty" size="3" readonly/>
+	                    <input id="plus-{{id}}"type="button" value="+" class="plus edit">
 										</div>
 									</td>
 
@@ -78,6 +78,32 @@
 							</tbody>
 
 						</table>
+						<div class="table-responsive">
+							<table class="table cart">
+							<thead>
+								<th>Standard Shipping</th>
+								<th>Local PickUp</th>
+							</thead>
+							<tbody>
+								<tr class="cart_item">
+									<td class="standard-shipping">
+										<p>A description of the standard shipping costs</p>
+										<div>
+											<input id="radio-1" class="radio-style" name="radio-group-1" type="radio" checked>
+											<label for="radio-1" class="radio-style-1-label">standard shipping</label>
+										</div>
+									</td>
+									<td class="local-pickup">
+										<p>A description of how and where to pick stuff up</p>
+										<div>
+											<input id="radio-2" class="radio-style" name="radio-group-1" type="radio">
+											<label for="radio-2" class="radio-style-1-label">Local pickup</label>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 						<button id="update-cart" class="button shop-item-add-to-cart m-4 custom-shadow" disabled>update cart</button>
 						<button id="checkout" class="button shop-item-add-to-cart m-4 custom-shadow">Checkout</button>
 						</div>
