@@ -50,23 +50,35 @@ router.post('/checkout', (req, res, next) => {
   console.log("checkin out!")
   let cart = req.session.cart;
   let shipping = false;
+  let shippingCost = 0;
   let pickup = false;
-  if (req.body['radio-group-1'] === "delivery"){
-    shipping = true;
-  }else{pickup = true;}
-  console.log(shipping)
+  let grandTotal = 0;
   utils.displayCart(cart, "checkout")
   .then((displayCart) => {
-    let grandTotal = 0;
+    let cartTotal = 0;
     displayCart.forEach(item => {
-      grandTotal += (parseInt(item.price) * parseInt(item.qty))
+      cartTotal += (parseInt(item.price) * parseInt(item.qty))
+      if (item.framed == "Yes"){
+        console.log("item framed")
+        shippingCost += 5;
+      }
     })
+    if (req.body['radio-group-1'] === "delivery"){
+      shipping = true;
+      grandTotal = cartTotal + shippingCost
+    }
+    else{
+      pickup = true;
+      grandTotal = cartTotal - 5;
+    }
     res.render('checkout', {
       galleries: galleries,
       cart: displayCart,
+      cartTotal: cartTotal,
       grandTotal: grandTotal,
       shipping: shipping,
-      pickup: pickup
+      pickup: pickup,
+      shippingCost: shippingCost
     })
   })
   .catch((err) => {
