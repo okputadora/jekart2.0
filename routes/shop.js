@@ -78,7 +78,9 @@ router.post('/checkout', (req, res, next) => {
     console.log("cart updated: ", req.session.cart)
     // display the results
     let pk = process.env.STRIPE_PK;
+    let items = JSON.stringify(cart.items)
     console.log(pk)
+    req.session.charge = displayCart
     res.render('checkout', {
       galleries: galleries,
       cart: displayCart,
@@ -86,6 +88,7 @@ router.post('/checkout', (req, res, next) => {
       grandTotal: grandTotal,
       shipping: shipping,
       pickup: pickup,
+      items: items,
       shippingCost: shippingCost,
       pk_key: pk
     })

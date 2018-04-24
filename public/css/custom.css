@@ -90,6 +90,7 @@ a {
 }
 
 .menu-title{
+  transition: .2s;
   font-size: 15px !important;
 }
 
@@ -137,7 +138,7 @@ a {
 .right{
   float: right;
   text-align: right;
-  width: 800px;
+  width: auto;
 }
 
 .custom-fixed{
@@ -289,8 +290,16 @@ button[disbaled]:hover{
   background: #666 !important;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-
-
+input:disabled,
+input[disabled]{
+  background: #666 !important;
+  color: #999 !important;
+}
+input:disabled:hover,
+input[disbaled]:hover{
+  background: #666 !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
 .custom-cart{
   color: white;
   font-size: 30px !important;
@@ -433,6 +442,16 @@ input[type=checkbox]{
   .gallery-description{
     opacity: .7;
   }
+  .menu-title{
+    font-size: 12px !important;
+  }
+}
+
+.confirmation{
+  min-height: 60vh;
+  flex-direction: column;
+  justify-content: center !important;
+  color: white !important;
 }
 @media screen and (max-width: 450px){
   .custom-background{

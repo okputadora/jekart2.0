@@ -1,12 +1,8 @@
 module.exports = function Cart(oldCart){
   this.items = oldCart;
-  this.total = 0;
   this.add = (id, qty, framed) => {
-    // check to see if it's already in here
-    console.log(framed)
     let foundDuplicate = false;
     this.items.forEach((item, i) => {
-      console.log(item)
       if (item.id === id && item.framed == framed){
         item.qty = parseInt(item.qty) + parseInt(qty)
         foundDuplicate = true;

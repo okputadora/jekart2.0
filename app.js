@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const api = require('./routes/api');
-const stripe = require('./routes/checkout');
+const stripe = require('./routes/stripe');
 const shop = require('./routes/shop');
 
 require('dotenv').config();
@@ -43,7 +43,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({mongooseConnection: mongoose.connection}),
-  cookie: {maxAge: 20 * 60 * 1000}
+  cookie: {maxAge: 60 * 60 * 1000}
 }))
 
 

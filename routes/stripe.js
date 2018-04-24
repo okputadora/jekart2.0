@@ -1,13 +1,24 @@
 var express = require('express')
 var router = express.Router()
 var controllers = require('../controllers')
-const galleries = require('../galleries.js')
+const galleryImport = require('../galleries.js')
+const galleries = galleryImport.galleries;
 require('dotenv').config()
 
 var stripe = require('stripe')(process.env.STRIPE_SK)
 
 router.post('/', function(req, res, next){
   console.log(req.session.cart)
+  let items = req.session.displayCart;
+  let description = '';
+  // create description from items
+  items.forEach((item, i) => {
+    description += (i + 1) + ". " + item.qty + "x " + item.name + " "
+    if (item.framed == "Yes"){
+      description += "framed. "
+    }
+    else description += "unframed. "
+  })
   let amount = req.session.cart.grandTotal + "00"
   amount = parseInt(amount)
   console.log(amount)
@@ -21,10 +32,16 @@ router.post('/', function(req, res, next){
     description: 'Joseph Edgerton Krause Art',
     currency: 'usd',
     customer: customer.id,
+    description: description,
+    metadata: {data: description},
+    receipt_email: customer.email,
   }))
-  .then(charge => res.render('paymentConfirmation', {
-    galleries: galleries
-  }))
+  .then(charge => {
+    console.log(charge)
+    res.render('paymentConfirmation', {
+      galleries: galleries
+    })
+  })
   .catch(err => console.log(err))
 
 });
