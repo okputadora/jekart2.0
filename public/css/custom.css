@@ -126,6 +126,7 @@ a {
 }
 
 .custom-text{
+  color: white !important;
   font-weight: 900 !important;
   font-size: 40px !important;
   width: 800px;

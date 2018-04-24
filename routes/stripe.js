@@ -16,18 +16,17 @@ router.post('/', function(req, res, next){
     description +=  item.qty + "x " + item.name
     + " "
     if (item.framed == "Yes"){
-      description += "framed: "
+      description += "framed: ";
     }
     else {description += "unframed: "}
-    description += "$" + item.price + " "
+    description += "$" + item.price + " --- ";
   })
-  let amount = req.session.charge.grandTotal
-  description += 'Total: $' + amount
-  amount = parseInt(amount + "00")
-  console.log(amount)
-  console.log(req.body)
+  let amount = req.session.charge.grandTotal;
+  description += 'Total: $' + amount;
+  amount = parseInt(amount + "00");
+  let shippingInfo = "local pickup";
   if (req.body.stripeShippingName){
-    let shippingInfo = {
+    shippingInfo = {
       name: req.body.stripeShippingName,
       country: req.body.stripeShippingAddressCountry,
       zip: req.body.stripeShippingAddressZip,
@@ -36,7 +35,8 @@ router.post('/', function(req, res, next){
       state: req.body.stripeShippingAddressState
     }
   }
-  else{shippingInfo = "local pickup"}
+
+  console.log(shippingInfo)
   stripe.customers.create({
     email: req.body.stripeEmail,
     source: req.body.stripeToken,
