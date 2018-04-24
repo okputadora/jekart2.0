@@ -318,9 +318,7 @@ input[disbaled]:hover{
   opacity: 0;
 }
 
-.radio-style:checked + .radio-style-1-label:before {
-    background: #292929;
-}
+
 .small-text{
   font-size: 15px;
 }
@@ -336,9 +334,9 @@ their functions.js */
   border: 2px solid #fafafa !important;
 }
 
-input[type=checkbox]{
+/* input[type=checkbox]{
   visibility: hidden
-}
+} */
 
 .shop-container{
   border: 1px solid #ddd;
