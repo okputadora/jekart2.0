@@ -31,13 +31,12 @@ gulp.task('css', function(){
       './public/css/bootstrap.css',
       './public/style.css',
       './public/css/swiper.css',
-      './public/css/dark.css',
+      './public/css/custom-form.css',
       './public/css/font-icons.css',
       './public/css/animate.css',
       './public/css/magnific-popup.css',
       './public/css/custom.css',
       './public/css/responsive.css',
-      './public/css/shop.css'
     ]
   )
   .pipe(minifyCSS())

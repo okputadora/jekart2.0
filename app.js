@@ -12,6 +12,7 @@ const index = require('./routes/index');
 const api = require('./routes/api');
 const stripe = require('./routes/stripe');
 const shop = require('./routes/shop');
+const gallery = require('./routes/gallery')
 
 require('dotenv').config();
 
@@ -51,7 +52,7 @@ app.use(session({
 app.use('/shop', shop);
 app.use('/stripe', stripe);
 app.use('/api', api);
-app.use('/gallery', index);
+app.use('/gallery', gallery);
 app.use('/', index);
 
 // catch 404 and forward to error handler

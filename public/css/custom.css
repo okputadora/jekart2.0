@@ -10,6 +10,10 @@ a {
   text-decoration: none !important;
   color: inherit !important;
 }
+
+.content-wrap{
+  min-height: 85vh !important;
+}
 /* nav */
 .custom-theme-1{
   color: white !important;
@@ -161,7 +165,7 @@ a {
 .custom-background{
   background: url('/art_imgs/background/main1.png');
   background-attachment: fixed;
-  min-height: 80vh;
+  min-height: 85vh;
 }
 
 .plain-background{
