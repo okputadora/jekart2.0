@@ -218,8 +218,8 @@ a {
   opacity: 1;
 }
 
-.footer{
-  background-color: #292929;
+#footer, #copyrights{
+  background-color: #292929 !important;
 }
 
 #gotoTop:hover{

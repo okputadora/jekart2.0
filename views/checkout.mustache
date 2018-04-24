@@ -89,16 +89,9 @@
 											<td>
 												<strong>Shipping</strong>
 											</td>
-											{{#shipping}}
-												<td class="text-right">
-													<strong>${{shippingCost}}</strong>
-												</td>
-											{{/shipping}}
-											{{#pickup}}
 											<td class="text-right">
-												<strong>- $5</strong>
+												<strong>${{shippingCost}}</strong>
 											</td>
-											{{/pickup}}
 										</tr>
 										<tr class="cart_item">
 											<td class="cart-product-name">
@@ -112,13 +105,7 @@
 								</table>
 							</div>
 						</div>
-						{{#shipping}}
-							{{> shippingForm}}
-						{{/shipping}}
-						{{#pickup}}
-							{{> pickupForm}}
-						{{/pickup}}
-
+						{{> shippingForm}}
 						<div class="w-100 bottommargin"></div>
 					</div>
 				</div>

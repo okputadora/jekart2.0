@@ -1,5 +1,6 @@
 <div class="col-lg-6 py-3">
   <form action="/stripe" method="POST">
+    <div>{{grandTotal}}</div>
     <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_we5yiehWWU4eB6tENaAFf2XV"
@@ -7,7 +8,9 @@
     data-name="Joseph Edgerton Krause"
     data-image="/checkoutlogo.png"
     data-locale="auto"
-    data-shipping-address=true>
+    data-billing-address="true"
+    data-shipping-address="{{shipping}}">
+
     </script>
     <script>
       // hide default stripe button

@@ -8,21 +8,35 @@ require('dotenv').config()
 var stripe = require('stripe')(process.env.STRIPE_SK)
 
 router.post('/', function(req, res, next){
-  console.log(req.session.cart)
-  let items = req.session.displayCart;
+  let items = req.session.charge.cart;
+  console.log(items)
   let description = '';
   // create description from items
-  items.forEach((item, i) => {
-    description += (i + 1) + ". " + item.qty + "x " + item.name + " "
+  items.forEach(item => {
+    description +=  item.qty + "x " + item.name
+    + " "
     if (item.framed == "Yes"){
-      description += "framed. "
+      description += "framed: "
     }
-    else description += "unframed. "
+    else {description += "unframed: "}
+    description += "$" + item.price + " "
   })
-  let amount = req.session.cart.grandTotal + "00"
-  amount = parseInt(amount)
+  let amount = req.session.charge.grandTotal
+  description += 'Total: $' + amount
+  amount = parseInt(amount + "00")
   console.log(amount)
   console.log(req.body)
+  if (req.body.stripeShippingName){
+    let shippingInfo = {
+      name: req.body.stripeShippingName,
+      country: req.body.stripeShippingAddressCountry,
+      zip: req.body.stripeShippingAddressZip,
+      line1: req.body.stripeShippingAddressLine1,
+      city: req.body.stripeShippingAddressCity,
+      state: req.body.stripeShippingAddressState
+    }
+  }
+  else{shippingInfo = "local pickup"}
   stripe.customers.create({
     email: req.body.stripeEmail,
     source: req.body.stripeToken,
@@ -33,16 +47,24 @@ router.post('/', function(req, res, next){
     currency: 'usd',
     customer: customer.id,
     description: description,
-    metadata: {data: description},
+    metadata: {description: description, shipping: JSON.stringify(shippingInfo)},
     receipt_email: customer.email,
   }))
   .then(charge => {
     console.log(charge)
     res.render('paymentConfirmation', {
-      galleries: galleries
+      galleries: galleries,
+      message: "Your order has been processed.",
+      message2: "Please check your inbox for confirmation and shipping details."
     })
   })
-  .catch(err => console.log(err))
+  .catch(err => {
+    res.render('paymentConfirmation',{
+      galleries: galleries,
+      message: "An error occured while processing your transaction",
+      message2: err
+    })
+  })
 
 });
 
