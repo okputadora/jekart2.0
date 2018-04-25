@@ -35,7 +35,7 @@
               </div>
               <div class="col_two_fifth product-desc">
 								<h2>{{name}}</h2>
-                <div class="product-price text-dark">${{price1}}</div></br>
+                <div id="main-price"class="product-price text-dark">${{price1}}</div></br>
 								<div class="discount-price mt-3 text-dark">$5 discount for local pickup</div>
                 <div class="clear"></div>
                 <div class="line"></div>
@@ -48,7 +48,7 @@
 								</div>
 								<div class="row">
 									<div class="my-3">
-										<h4>Framed (+$50)<span>
+										<h4>Framed <span id="framed-price" class="text-dark">+ ${{framedPrice}}</span><span>
 											<div class="switch">
 												<input id="switch-toggle-2" class="switch-toggle switch-toggle-round framed" type="checkbox">
 												<label for="switch-toggle-2"></label>
@@ -113,7 +113,7 @@
     {{> footer }}
 		<script>
 
-		jQuery(".bt-switch").bootstrapSwitch();
+		// jQuery(".bt-switch").bootstrapSwitch();
 
 	</script>
 	</div>

@@ -39,6 +39,7 @@ module.exports = {
             framed: framed,
             description: result[0].description,
             price: price,
+            framedPrice: framedPrice,
             qty: qty,
             total: totalPrice,
             id: id

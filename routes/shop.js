@@ -149,7 +149,7 @@ router.get('/:item', (req,res,next) => {
       price1: print.price1,
       price2: print.price2,
       price3: print.price3,
-      framedPrice: (print.price+50),
+      framedPrice: 50, // change this after updating the db
       galleries: galleries,
       id: print._id
     })
