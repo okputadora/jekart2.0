@@ -8,13 +8,18 @@ const router = express.Router();
 
 
 router.get('/', (req, res, next) => {
+  let cartCount = null
+  if (req.session.cart){
+    cartCount = "+" + req.session.cart.totQty;
+  }
   console.log("cart: ", req.session.cart)
   controller = controllers['prints']
   controller.get()
   .then((prints) => {
     res.render('shop', {
       galleries: galleries,
-      prints: prints
+      prints: prints,
+      cartCount: cartCount,
     })
   })
   .catch(error => {
@@ -25,12 +30,15 @@ router.get('/', (req, res, next) => {
 router.get('/cart', (req, res, next) => {
   let cart = req.session.cart
   if (cart){
+    cartCount = "+" + req.session.cart.totQty;
+    console.log("displaying the cart")
     utils.displayCart(cart, "cart")
     .then((displayCart) => {
       console.log(displayCart)
       res.render('cart', {
         galleries: galleries,
-        cart: displayCart
+        cart: displayCart,
+        cartCount: cartCount
       })
     })
     .catch(err => {
@@ -49,6 +57,7 @@ router.get('/cart', (req, res, next) => {
 router.post('/checkout', (req, res, next) => {
   console.log("checkin out!")
   let cart = req.session.cart;
+  let cartCount = "+" + req.session.cart.totQty;
   let shipping = false;
   let shippingCost = 0;
   let pickup = false;
@@ -84,6 +93,7 @@ router.post('/checkout', (req, res, next) => {
       shipping: shipping,
       items: items,
       shippingCost: shippingCost,
+      cartCount: cartCount,
       pk: pk
     })
   })
@@ -95,27 +105,21 @@ router.post('/checkout', (req, res, next) => {
 })
 
 router.post('/:action', (req,res,next) => {
+  let oldCart = [];
+  let oldTotQty = 0;
+  if (req.session.cart){
+    oldCart = req.session.cart.items;
+    oldTotQty = req.session.cart.totQty;
+  }
+  let cart = new Cart(oldCart, oldTotQty)
   if (req.params.action === 'addToCart'){
-    let oldCart = []
-    if (req.session.cart){
-      oldCart = req.session.cart.items
-    }
-    console.log("creating new cart")
-    let cart = new Cart(oldCart)
-    console.log("cart created")
-    console.log(req.body.id, req.body.qty, req.body.framed)
+    console.log("qty to be added: " + oldTotQty)
     cart.add(req.body.id, req.body.qty, req.body.framed)
-    console.log("added new item")
     req.session.cart = cart;
     console.log(cart)
     res.send(200)
   }
   else if (req.params.action === "removeFromCart"){
-    let oldCart = []
-    if (req.session.cart){
-      oldCart = req.session.cart.items
-    }
-    let cart = new Cart(oldCart)
     cart.remove(req.body.id, req.body.qty)
     console.log(cart)
     req.session.cart = cart;
@@ -123,8 +127,7 @@ router.post('/:action', (req,res,next) => {
   }
   else if (req.params.action === "updateCart"){
     let items = JSON.parse(req.body.items);
-    console.log("updated items: ", items)
-    let cart = new Cart(items)
+    let cart = new Cart(items, oldTotQty)
     console.log(cart)
     req.session.cart = cart;
     res.send(200)
@@ -132,6 +135,10 @@ router.post('/:action', (req,res,next) => {
 })
 
 router.get('/:item', (req,res,next) => {
+  let totQty = null;
+  if (req.session.cart){
+    totQty = "+" + req.session.cart.totQty;
+  }
   var name = {name: req.params.item.trim()}
   controller = controllers['prints']
   controller.getByParam(name)
@@ -149,7 +156,8 @@ router.get('/:item', (req,res,next) => {
       price1: print.price1,
       price2: print.price2,
       price3: print.price3,
-      framedPrice: 50, // change this after updating the db
+      cartCount: totQty,
+      framedPrice: 50, // change this after updating the db to print.framedPrice
       galleries: galleries,
       id: print._id
     })

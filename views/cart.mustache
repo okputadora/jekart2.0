@@ -10,11 +10,11 @@
 	<div id="wrapper" class="clearfix">
 
     {{> nav }}
-    <div id="page-menu" class="no-sticky" style="background: #1b1b1b">
-      <div id="" class='custom-page-banner'style="position: fixed; width: 100%;">
+    <div id="page-menu" class="no-sticky">
+      <div id="" class='custom-page-banner'>
         <div class="container clearfix">
-          <div style="padding-left: 10px;"class="menu-title" style='width: 100%'><a href='/shop'>shop </a><img style="margin:5px;" src="/images/icons/submenu.png"><span>cart</span></div>
-          <a href=""><i class="icon-shopping-cart right custom-cart"></i></a>
+          <div class="menu-title"><a href='/shop'>shop </a><img src="/images/icons/submenu.png"><span>cart</span></div>
+          {{> cartIcon}}
         </div>
       </div>
     </div>

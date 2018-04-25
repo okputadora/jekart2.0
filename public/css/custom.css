@@ -310,6 +310,13 @@ input[disbaled]:hover{
   font-size: 30px !important;
 }
 
+#cart-count{
+  /* margin-left: 10px; */
+  font-size: 15px;
+  color: #f9f9f9;
+
+}
+
 #cartAdded{
   box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.1);
   position: fixed;
@@ -359,7 +366,7 @@ their functions.js */
 }
 
 .discount-price{
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 }
 

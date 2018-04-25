@@ -2,6 +2,10 @@ $(document).ready(function(){
   console.log("ready")
   var unframedPrice = parseInt($("#main-price").html().slice(1));
   var framedPrice = parseInt($("#framed-price").html().slice(3));
+  if ($("#cart-count").html()){
+    var cartCount = parseInt($("#cart-count").html().slice(1));
+  }else{cartCount = 0;}
+  console.log(cartCount)
   // Add to cart
   $(".content-wrap").on("click", ".add-to-cart", function(e){
     e.preventDefault();
@@ -12,8 +16,12 @@ $(document).ready(function(){
       var framed = $(".framed").is(":checked");
       var qty = $(".qty").val();
     }else{qty = 1; framed = false;}
+    cartCount += parseInt(qty)
+    console.log(cartCount)
+    // update the display cart
+    $("#cart-count").html("+" + cartCount)
 
-    console.log(qty)
+    // update the cart on the server
     $.ajax({
       url: '/shop/addToCart',
       type: 'POST',
