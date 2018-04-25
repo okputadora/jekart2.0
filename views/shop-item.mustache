@@ -4,11 +4,11 @@
 <body class="stretched">
 	<div id="wrapper" class="clearfix">
     {{> nav }}
-		<div id="page-menu" class="no-sticky" style="background: #1b1b1b">
-			<div id="" class='custom-page-banner'style='position: fixed; width: 100%;'>
+		<div id="page-menu" class="no-sticky">
+			<div id="" class='custom-page-banner'>
 				<div class="container clearfix">
-					<div style="padding-left: 10px;"class="menu-title"><a href="/shop">shop</a>
-						<img style="margin:5px;"src="/images/icons/submenu.png" /><span>{{name}}</span>
+					<div class="menu-title"><a href="/shop">shop</a>
+						<img src="/images/icons/submenu.png" /><span>{{name}}</span>
 					</div>
 					<a href="./cart"><i class="icon-shopping-cart right custom-cart"><span id="cart-count"></span></i></a>
 			 </div>
@@ -35,7 +35,8 @@
               </div>
               <div class="col_two_fifth product-desc">
 								<h2>{{name}}</h2>
-                <div class="product-price"><ins class="black-text">${{price1}}</ins></div>
+                <div class="product-price text-dark">${{price1}}</div></br>
+								<div class="discount-price mt-3 text-dark">$5 discount for local pickup</div>
                 <div class="clear"></div>
                 <div class="line"></div>
 								<div class="row">
@@ -70,8 +71,6 @@
                 <ul class="iconlist">
                   <li><i class="icon-caret-right"></i>{{description}}</li>
                   <li><i class="icon-caret-right"></i>{{dimensions}} inches</li>
-									<li><i class="icon-caret-right"></i>2 for ${{price2}}(ea.)</li>
-									<li><i class="icon-caret-right"></i>3 for ${{price3}}(ea.)</li>
                 </ul>
               </div>
               <div class="col_one_fifth col_last">

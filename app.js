@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // setup session
 app.use(session({
-  secret: 'pqonveuwwkslmcualkjxijgbnuv',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({mongooseConnection: mongoose.connection}),
