@@ -55,42 +55,55 @@ router.get('/cart', (req, res, next) => {
 })
 
 router.post('/checkout', (req, res, next) => {
-  console.log("checkin out!")
   let cart = req.session.cart;
   let cartCount = "+" + req.session.cart.totQty;
-  let shipping = false;
-  let shippingCost = 0;
+  let shippingCost = "Free Shipping";
   let pickup = false;
   let grandTotal = 0;
+  console.log("getting cart")
   utils.displayCart(cart, "checkout")
   .then((displayCart) => {
+    console.log("got cart")
     let cartTotal = 0;
+    // sum the prices in the cart
     displayCart.forEach(item => {
       cartTotal += (parseInt(item.price) * parseInt(item.qty))
-      if (item.framed == "Yes"){
-        console.log("item framed")
-        shippingCost += 5;
-      }
+      grandTotal = cartTotal;
     })
-    if (req.body['radio-group-1'] === "delivery"){
-      shipping = true;
-      grandTotal = cartTotal + shippingCost
+    console.log("good to here")
+    // if pickup add 15% discount
+    if (req.body['radio-group-1'] === "pickup"){
+      shippingCost = cartTotal * .15;
+      grandTotal = cartTotal - shippingCost
+      grandTotal = Math.round(grandTotal * 10) / 10;
+      shippingCost = "- $"+shippingCost
     }
-    else{
-      shippingCost = "-5"
-      grandTotal = cartTotal - 5;
-    }
-    let pk = process.env.STRIPE_PK;
-    let items = JSON.stringify(cart.items)
-    console.log(pk)
-    req.session.charge = {cart: displayCart, grandTotal, shippingCost};
+    console.log("and here")
+    // because stripe doesn't use decimals in their prices
+    // we need to reformat this a bit //CONVERT THIS TO TERNARY IF
+    let stripeTotal = grandTotal + "00"
+    grandTotal = grandTotal.toString()
     console.log(grandTotal)
+    if (grandTotal.indexOf(".") > -1){
+      console.log("there is a decimal")
+      console.log(grandTotal)
+      stripeTotal = grandTotal.slice(0, grandTotal.indexOf(".")) + grandTotal.slice(grandTotal.indexOf("." + 1)) + "0";
+      console.log(stripeTotal)
+      console.log(grandTotal)
+    }
+    console.log("and were good here")
+    let pk = process.env.STRIPE_PK;
+    let items = JSON.stringify(cart.items);
+    // keep this data server side
+    req.session.charge = {cart: displayCart, stripeTotal, cartTotal, shippingCost, grandTotal, shippingCost};
+    console.log("good the whole way")
+    console.log(req.session.charge)
     res.render('checkout', {
       galleries: galleries,
       cart: displayCart,
       cartTotal: cartTotal,
       grandTotal: grandTotal,
-      shipping: shipping,
+      stripeTotal: stripeTotal,
       items: items,
       shippingCost: shippingCost,
       cartCount: cartCount,

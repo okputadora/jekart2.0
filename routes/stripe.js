@@ -21,9 +21,13 @@ router.post('/', function(req, res, next){
     else {description += "unframed: "}
     description += "$" + item.price + " --- ";
   })
-  let amount = req.session.charge.grandTotal;
-  description += 'Total: $' + amount;
-  amount = parseInt(amount + "00");
+  description += `
+    subtotal: $${req.session.charge.cartTotal}
+    shipping: ${req.session.charge.shippingCost}
+    grand Total: $${req.session.charge.grandTotal}
+  `;
+  let amount = req.session.charge.stripeTotal;
+  amount = parseInt(amount);
   let shippingInfo = "local pickup";
   if (req.body.stripeShippingName){
     shippingInfo = {
@@ -51,7 +55,9 @@ router.post('/', function(req, res, next){
     receipt_email: customer.email,
   }))
   .then(charge => {
-    console.log(charge)
+    // clear session data
+
+    // display confirmation
     res.render('paymentConfirmation', {
       galleries: galleries,
       message: "Your order has been processed.",
