@@ -90,6 +90,7 @@ a {
 }
 
 #page-menu{
+  z-index: 100;
   width: 100% !important;
 }
 
@@ -212,7 +213,7 @@ a {
 }
 
 .custom-image-background{
-  position: fixed !important;
+  position: absolute !important;
   filter: opacity(80%) brightness(40%) !important;
   top: 0 !important;
   height: 100% !important;
@@ -220,7 +221,6 @@ a {
   background-attachment: fixed !important;
   background-size: cover !important;
   background-position: center !important;
-  z-index: 0;
 }
 
 .single-image{
@@ -247,7 +247,7 @@ a {
   opacity: 1 !important;
 }
 
-#footer, #copyrights{
+#custom-footer, #copyrights{
   background-color: #292929 !important;
 }
 

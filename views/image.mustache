@@ -4,6 +4,7 @@
 <body class="stretched">
 	<div id="wrapper" class="clearfix" style>
 		{{>nav }}
+		<div class="custom-image-background" style="background: url('/art_imgs/{{gallery}}/background/{{imagePath}}');"></div>
 		<div class="row">
 			<div id="page-menu" class="no-sticky">
 				<div class='custom-page-banner'>
@@ -15,60 +16,36 @@
 				</div>
 			</div>
 		</div>
-<section class="custom-image-background" style="background: url('/art_imgs/{{gallery}}/background/{{imagePath}}');"></section>
-<section id="content" class="single-image">
-  <div class="content-wrap">
-    <div class="container clearfix">
-      <div id="portfolio" class="portfolio grid-container portfolio-1 clearfix">
-        <article class="portfolio-item pf-media pf-icons clearfix">
-          <div class="portfolio-image">
-              <a href='/art_imgs/{{gallery}}/{{imagePath}}'><img src="/art_imgs/{{gallery}}/{{imagePath}}" alt="{{name}}"></a>
-          </div>
-          <div class="portfolio-desc text-light">
-						<div class="">
-							<h3 style="color: white; font-size:25px; text-transform:capitalize">{{title}}</h3>
-							<p style="font-size: 20px; line-height: 1.2">{{description}}</p>
-							<ul style='font-size: 20px; margin:0' class="iconlist">
-								{{dimensions}}
-							</ul>
-						</div>
-          </div>
-					<div class="portfolio-desc ">
-						<p class="custom-sales-box">
-							<a id="opaque" href="/contact"><strong>Contact me</strong></a>
-							if you're interested in purchasing originals.
-						</p>
-					</div>
-        </article>
-      </div>
-    </div>
-  </div>
-	<div id="gotoTop" class="icon-angle-up"></div>
-</section>
+		<section id="content" class="single-image">
+		  <div class="content-wrap">
+		    <div class="container clearfix">
+		      <div id="portfolio" class="portfolio grid-container portfolio-1 clearfix">
+		        <article class="portfolio-item pf-media pf-icons clearfix noborder">
+		          <div class="portfolio-image">
+		              <a href='/art_imgs/{{gallery}}/{{imagePath}}'><img src="/art_imgs/{{gallery}}/{{imagePath}}" alt="{{name}}"></a>
+		          </div>
+		          <div class="portfolio-desc text-light">
+								<div class="text-light">
+									<h3 class="text-light text-capitalize">{{title}}</h3>
+									<p>{{description}}</p>
+									<ul class="iconlist">
+										{{dimensions}}
+									</ul>
+								</div>
+		          </div>
+							<div class="portfolio-desc ">
+								<p class="custom-sales-box">
+									<a id="opaque" href="/contact"><strong>Contact me</strong></a>
+									if you're interested in purchasing originals.
+								</p>
+							</div>
+		        </article>
+		      </div>
+		    </div>
+		  </div>
+			<div id="gotoTop" class="icon-angle-up"></div>
+		</section>
 	</div>
-	<footer id="footer" class='dark' style='margin-top: 0px !important'>
-		<div id="copyrights">
-			<div class="container clearfix">
-				<div class="col_half">
-					Copyrights &copy; 2018 All Rights Reserved by Joseph Edgerton Krause
-				</div>
-				<div class="col_half col_last tright">
-					<div class="fright clearfix">
-						<a href="#" class="social-icon si-small si-borderless si-instagram">
-							<i class="icon-instagram"></i>
-							<i class="icon-instagram"></i>
-						</a>
-						<a href="#" class="social-icon si-small si-borderless si-vimeo">
-							<i class="icon-vimeo"></i>
-							<i class="icon-vimeo"></i>
-						</a>
-					</div>
-					<div class="clear"></div>
-					<i class="icon-envelope2"></i> info@jekart.com
-				</div>
-			</div>
-		</div>
-	</footer>
-	<script src="/build/vendor.min.js"></script>
+	{{> footer}}
 </body>
 </html>
