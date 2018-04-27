@@ -6,6 +6,9 @@
 -----------------------------------------------------------------*/
 
 /* *{border: 1px solid red;} */
+body{
+  overflow-x: hidden !important;
+}
 a {
   text-decoration: none !important;
   color: inherit !important;
@@ -86,11 +89,16 @@ a {
   border: 0 !important;
 }
 
+#page-menu{
+  width: 100% !important;
+}
+
 .custom-page-banner{
   background: #1b1b1b!important;
   text-transform: uppercase;
   font-size: 10px !important;
   letter-spacing: .08em;
+  width: 100% !important;
 }
 
 .menu-title{
@@ -203,6 +211,21 @@ a {
   opacity: .8;
 }
 
+.custom-image-background{
+  position: fixed !important;
+  filter: opacity(80%) brightness(40%) !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  background-position: center !important;
+  z-index: 0;
+}
+
+.single-image{
+  background: none !important;
+}
 .details{
   display: none !important;
 }
@@ -217,10 +240,11 @@ a {
   color: white !important;
   opacity: 0;
   transition: .2s;
+  text-transform: capitalize;
 }
 
 .custom-hover:hover .custom-image-title{
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 #footer, #copyrights{
@@ -237,6 +261,7 @@ a {
   width: 100%;
   border-bottom: 1px solid #ddd;
   background: #f2f2f2;
+  z-index: 1;
 }
 
 .custom-sales-box{

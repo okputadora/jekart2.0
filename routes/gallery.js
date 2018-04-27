@@ -10,29 +10,18 @@ router.get('/:name', function(req, res, next){
   controller = controllers['art']
   controller.getByParam({galleryName: name})
   .then(function(gallery){
-    var displayGallery = gallery.map(function(elem){
-      var title = elem.name.split(" ")
-      var capitalized = [];
-      title.forEach(function(word){
-        capitalWord = word.charAt(0).toUpperCase() + word.substring(1)
-        capitalized.push(capitalWord)
-      })
-      elem['displayName'] = capitalized.join(" ")
-      console.log(elem.displayName)
-      return elem;
-    })
-    // load special template for degradation sets
     if (name === "degradation sets"){
+      console.log(gallery[0].name)
       res.render("degradation", {
         galleryName: name,
-        gallery: displayGallery,
+        gallery: gallery,
         galleries: galleries
       })
       return
     }
     res.render('gallery', {
       galleryName: name,
-      gallery: displayGallery,
+      gallery: gallery,
       galleries: galleries
     })
   })

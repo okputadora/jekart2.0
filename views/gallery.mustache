@@ -12,7 +12,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="content" style="height: 100%">
+		<section id="content">
 			<div class="content-wrap custom-background">
         <div class="container clearfix">
 					<div id="portfolio" class="portfolio grid-container clearfix">
@@ -20,14 +20,13 @@
   						<article class="portfolio-item pf-media pf-icons custom-hover">
   							<div class="portfolio-image">
   								<a href="/gallery/image/{{name}}">
-  									<img src="/art_imgs/{{galleryName}}/{{imagePath}}" alt="Open Imagination">
+  									<img src="/art_imgs/{{galleryName}}/{{imagePath}}" alt="{{name}}">
   								</a>
   							</div>
   							<div class="portfolio-desc">
-  								<h3><a class='custom-image-title'href="/image/{{name}}">{{displayName}}</a></h3>
+  								<h3><a class='custom-image-title'href="/image/{{name}}">{{name}}</a></h3>
 									<div class='details'>
 										<div class='description'>{{description}}</div>
-										<div class='description'>{{dimensions}}</div>
 									</div>
   							</div>
   						</article>
