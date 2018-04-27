@@ -127,10 +127,20 @@ router.post('/:action', (req,res,next) => {
   }
   else if (req.params.action === "updateCart"){
     let items = JSON.parse(req.body.items);
-    let cart = new Cart(items, oldTotQty)
+    console.log(items)
+    // create a new empty cart and add elements one at a time,
+    // because the user can toggle the framing options here, it's possible
+    // we now have a duplicate in our cart
+    let cart = new Cart([], 0)
+    items.forEach(item => {
+      cart.add(item.id, item.qty, item.framed)
+    })
     console.log(cart)
     req.session.cart = cart;
-    res.send(200)
+    utils.displayCart(cart, "cart")
+    .then(displayCart => {
+      res.json(displayCart)
+    })
   }
 })
 

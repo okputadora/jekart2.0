@@ -1,7 +1,8 @@
 $(document).ready(function(){
-  console.log("ready")
-  var unframedPrice = parseInt($("#main-price").html().slice(1));
-  var framedPrice = parseInt($("#framed-price").html().slice(3));
+  if ($("#main-price").html()){
+    var unframedPrice = parseInt($("#main-price").html().slice(1));
+    var framedPrice = parseInt($("#framed-price").html().slice(3));
+  }
   if ($("#cart-count").html()){
     var cartCount = parseInt($("#cart-count").html().slice(1));
   }else{cartCount = 0;}
@@ -64,8 +65,10 @@ $(document).ready(function(){
   })
 
   $(".content-wrap").on("click", ".edit", function(){
-    $("#update-cart").prop("disabled", false);
-    $("#checkout").prop("disabled", true);
+    // $("#update-cart").prop("disabled", false);
+    // $("#checkout").prop("disabled", true);
+    console.log("edited")
+    updateCart();
   })
 
   $(".content-wrap").on("click", ".remove", function(){
@@ -81,8 +84,9 @@ $(document).ready(function(){
     })
   })
 
-  $("#update-cart").on("click", function(){
-    // grab the list items
+  function updateCart(){
+    console.log("updating")
+    // grab the items in the cart
     var items = [];
     $('.cart_item').each(function(){
       var id = this.id;
@@ -94,15 +98,87 @@ $(document).ready(function(){
       }
       items.push({id: id, qty: qty, framed: framed});
     })
+    console.log(items)
     items = JSON.stringify(items)
     $.ajax({
       url: '/shop/updateCart',
       type: 'POST',
       data: {items: items}
-    }).then(function(resp){
-      location.reload()
+    }).then(function(cart){
+      console.log(cart)
+      // rebuild the cart
+      $("#cart-list").html("");
+      cart.forEach(function(item){
+        var tr = $("<tr>")
+          .addClass("cart_item")
+          .attr("id", item.id);
+        var remove = $("<td>").addClass("cart-product-remove");
+        var removeLink = $("<a>")
+          .addClass("remove")
+          .attr("id", "remove-" + item.id)
+          .html('<i class="icon-trash2"></i>');
+        remove.append(removeLink);
+        var image = $("<td>").addClass("cart-product");
+        var imageLink = $("<img>")
+          .addClass("custom-thumb")
+          .attr("src", "/art_imgs/prints/" + item.image)
+          .attr("alt", item.name);
+        image.append(imageLink);
+        var name = $("<td>")
+          .addClass("cart-product-name")
+          .html("<a>"+item.name+"</a>");
+        var framed = $("<td>").addClass("cart-product-framed");
+        var toggle = $("<div>").addClass("switch");
+        var toggleSwitch = $("<input>")
+          .addClass("switch-toggle switch-rounded-mini switch-toggle-round edit");
+        toggleSwitch
+          .attr("id", "framed-" + item.id)
+          .attr("type", "checkbox")
+          console.log(item.framed)
+        if (item.framed === "checked"){
+          console.log("framed!!")
+          toggleSwitch.prop("checked", "true");
+        }
+        var toggleLabel = $("<label>").attr("for", "framed-" + item.id);
+        toggle.append(toggleSwitch, toggleLabel);
+        framed.append(toggle);
+        var price = $("<td>").addClass("cart-product-price")
+        var priceVal = $("<span>")
+          .addClass("amount")
+          .attr("id", "amount-"+item.id)
+          .html("$" + item.price)
+        price.append(priceVal);
+        var qty = $("<td>").addClass("cart-product-quantity")
+        var qtyBtn = $("<div>").addClass("quantity clearfix")
+        var minusBtn = $("<input>")
+          .addClass("minus edit")
+          .attr("id", "minus-" + item.id)
+          .attr("type", "button")
+          .attr("value", "-");
+        var qtyVal = $("<input>")
+          .addClass("qty")
+          .attr("id", "qty-"+item.id)
+          .attr("step", 1)
+          .attr("min", "1")
+          .attr("name", "quantity")
+          .attr("value", item.qty)
+          .attr("readonly", "true");
+        var plusBtn = $("<input>")
+          .addClass("plus edit")
+          .attr("id", "plus-" + item.id)
+          .attr("value", "+")
+          .attr("type", "button");
+        qtyBtn.append(minusBtn, qtyVal, plusBtn)
+        qty.append(qtyBtn)
+        var subtotal = $("<td>").addClass("cart-product-subtotal")
+        var subTotAmt = $("<span>").addClass("amount")
+          .attr("id", "total-"+item.id).html("$"+item.total)
+        subtotal.append(subTotAmt)
+        tr.append(remove, image, name, framed, price, qty, subtotal)
+        $("#cart-list").append(tr)
+      })
     })
-  })
+  }
 
   function animateCartIn(e){
     $("#cartAdded")

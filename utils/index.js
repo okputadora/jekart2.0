@@ -21,6 +21,7 @@ module.exports = {
           let id = result[0]._id;
           // well this isn't great. how come i have a string sometimes
           if ((framed == 'true' || framed === true) && page === "cart"){
+            console.log("page = cart")
             framed = 'checked'
             price = price + framedPrice;
             id = id + "_F"

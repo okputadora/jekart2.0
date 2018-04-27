@@ -49,7 +49,7 @@ router.get('/image/:name', function(req, res, next){
   controller = controllers['art']
   controller.getByParam(name)
   .then(function(image){
-    console.log("rendering image")
+    console.log(image.dimensions)
     image = image[0];
     res.render('image', {
       title: image.name,
