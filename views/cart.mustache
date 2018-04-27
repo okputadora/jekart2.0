@@ -18,114 +18,92 @@
         </div>
       </div>
     </div>
-
     <section style="min-height: 80vh" id="content">
-
 			<div class="content-wrap">
-
 				<div class="container clearfix">
 					<form action="/shop/checkout" method="POST">
-					<div id="cart-table" class="table-responsive">
-						<table class="table cart shop-container">
-							<h4>Your orders</h4>
-							<thead>
-								<tr>
-									<th class="cart-product-remove">&nbsp;</th>
-									<th class="cart-product-thumbnail">&nbsp;</th>
-									<th class="cart-product-name">Product</th>
-									<th class="cart-product-framed">Framed</th>
-									<th class="cart-product-price">Price</th>
-									<th class="cart-product-quantity">Quantity</th>
-									<th class="cart-product-subtotal">Total</th>
-								</tr>
-							</thead>
-							<tbody id="cart-list">
-								{{#cart}}
-									<tr class="cart_item" id={{id}}>
-									<td class="cart-product-remove">
-										<a id="remove-{{id}}"class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-									</td>
-
-									<td class="cart-product">
-										<img class="custom-thumb" src="/art_imgs/prints/{{image}}" alt="{{name}}">
-									</td>
-
-									<td class="cart-product-name">
-										<a>{{name}}</a>
-									</td>
-									<td class="cart-product-framed">
-										<div class="switch">
-											<input id="framed-{{id}}" class="switch-toggle switch-rounded-mini switch-toggle-round edit" type="checkbox" {{framed}}>
-											<label for="framed-{{id}}"></label>
+						<div id="cart-table" class="table-responsive">
+							<table class="table cart shop-container">
+								<h4>Your orders</h4>
+								<thead>
+									<tr>
+										<th class="cart-product-remove">&nbsp;</th>
+										<th class="cart-product-thumbnail">&nbsp;</th>
+										<th class="cart-product-name">Product</th>
+										<th class="cart-product-framed">Framed</th>
+										<th class="cart-product-price">Price</th>
+										<th class="cart-product-quantity">Quantity</th>
+										<th class="cart-product-subtotal">Total</th>
+									</tr>
+								</thead>
+								<tbody id="cart-list">
+									{{#cart}}
+										<tr class="cart_item" id={{id}}>
+										<td class="cart-product-remove">
+											<a id="remove-{{id}}"class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+										</td>
+										<td class="cart-product">
+											<img class="custom-thumb" src="/art_imgs/prints/{{image}}" alt="{{name}}">
+										</td>
+										<td class="cart-product-name">
+											<a>{{name}}</a>
+										</td>
+										<td class="cart-product-framed">
+											<div class="switch">
+												<input id="framed-{{id}}" class="switch-toggle switch-rounded-mini switch-toggle-round edit" type="checkbox" {{framed}}>
+												<label for="framed-{{id}}"></label>
+											</div>
+										</td>
+										<td class="cart-product-price">
+											<span id="amount-{{id}}" class="amount">${{price}}</span>
+										</td>
+										<td class="cart-product-quantity">
+											<div class="quantity clearfix">
+												<input id="minus-{{id}}"type="button" value="-" class="minus edit">
+		                    <input id="qty-{{id}}" type="text" step="1" min="1"  name="quantity" value="{{qty}}" title="Qty" class="qty" size="3" readonly/>
+		                    <input id="plus-{{id}}"type="button" value="+" class="plus edit">
+											</div>
+										</td>
+										<td class="cart-product-subtotal">
+											<span id="total-{{id}}"class="amount">${{total}}</span>
+										</td>
+									</tr>
+									{{/cart}}
+								</tbody>
+							</table>
+							<div class="table-responsive">
+								<table class="table cart">
+									<h4>Shipping options</h4>
+								<tbody>
+									<tr class="">
+										<div class="standard-shipping">
+											<div>
+												<input id="radio-1" class="radio-style" name="radio-group-1" type="radio" value="delivery" checked>
+												<label for="radio-1" class="radio-style-1-label">standard shipping</label>
+											</div>
+											<p>Free shipping for all orders within the continental United States</p>
 										</div>
-									</td>
-									<td class="cart-product-price">
-										<span id="amount-{{id}}" class="amount">${{price}}</span>
-									</td>
-
-									<td class="cart-product-quantity">
-										<div class="quantity clearfix">
-											<input id="minus-{{id}}"type="button" value="-" class="minus edit">
-	                    <input id="qty-{{id}}" type="text" step="1" min="1"  name="quantity" value="{{qty}}" title="Qty" class="qty" size="3" readonly/>
-	                    <input id="plus-{{id}}"type="button" value="+" class="plus edit">
+										<div class="local-pickup">
+											<div>
+												<input id="radio-2" class="radio-style" name="radio-group-1" value="pickup" type="radio">
+												<label for="radio-2" class="radio-style-1-label">Local pickup</label>
+											</div>
+											<p>Local pickup is available at <strong><a href="https://www.google.com/maps/place/Germantown+Espresso+Bar/@40.0343452,-75.1746671,15z/data=!4m2!3m1!1s0x0:0x4dc2a50ab422285e?sa=X&ved=0ahUKEwj64eLb3NPaAhWE7FMKHd8bCw4Q_BIIjAEwCg">Germantown Espresso Bar</a></strong>
+												in Philadelphia, PA. The local pickup discount applies to all prints: $5 off for unframed prints and $15 off for framed prints.
+											</p>
 										</div>
-									</td>
-
-									<td class="cart-product-subtotal">
-										<span id="total-{{id}}"class="amount">${{total}}</span>
-									</td>
-								</tr>
-								{{/cart}}
-							</tbody>
-
-						</table>
-						<div class="table-responsive">
-							<table class="table cart">
-								<h4>Shipping options</h4>
-							<tbody>
-								<tr class="">
-									<td class="standard-shipping">
-										<div>
-											<input id="radio-1" class="radio-style" name="radio-group-1" type="radio" value="delivery" checked>
-											<label for="radio-1" class="radio-style-1-label">standard shipping</label>
-										</div>
-										<p>Free shipping for all orders within the continental United States</p>
-									</td>
-									<td class="local-pickup">
-										<div>
-											<input id="radio-2" class="radio-style" name="radio-group-1" value="pickup" type="radio">
-											<label for="radio-2" class="radio-style-1-label">Local pickup</label>
-										</div>
-										<p>Local pickup is available at <strong><a href="https://www.google.com/maps/place/Germantown+Espresso+Bar/@40.0343452,-75.1746671,15z/data=!4m2!3m1!1s0x0:0x4dc2a50ab422285e?sa=X&ved=0ahUKEwj64eLb3NPaAhWE7FMKHd8bCw4Q_BIIjAEwCg">Germantown Espresso Bar</a></strong>
-											in Philadelphia, PA. The local pickup discount applies to all prints: $5 off for unframed prints and $15 off for framed prints.
-										</p>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-
-						<!-- // make this submit a form that handles the local/delivery radiobutton -->
-						<input type="submit" id="checkout" value="checkout" class="button shop-item-add-to-cart m-4 custom-shadow"/>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						</form>
-					</div>
-
-
-
+					<input type="submit" id="checkout" value="checkout" class="button shop-item-add-to-cart m-4 custom-shadow"/>
 				</div>
-
-			</div>
-
-		</section><!-- #content end -->
-
-
-    {{> footer }}
-		<script>
-
-		// jQuery(".bt-switch").bootstrapSwitch();
-
-	</script>
+			</form>
+		</div>
 	</div>
-  </body>
-  </html>
+</div>
+</section>
+    {{> footer }}
+</div>
+</body>
+</html>

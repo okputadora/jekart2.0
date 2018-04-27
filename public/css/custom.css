@@ -398,6 +398,7 @@ their functions.js */
 #framed-price{font-family: 'Lato', 'sans-serif'}
 .custom-thumb{
   height: 10% !important;
+  width: auto !important;
 }
 
 .custom-checkbox label {
@@ -425,6 +426,10 @@ their functions.js */
   font-size: 19px;
   margin-left: -75px
 }
+
+.local-pickup, .standard-shipping{
+  vertical-align: top !important; 
+}
 /* ADMIN PAGE */
 .adminTable{
   padding: 0!important;
@@ -435,6 +440,7 @@ their functions.js */
     font-size: 20px;
   }
 }
+
 
 @media screen and (max-width: 991px){
   .custom-sub-menu-item{
@@ -463,7 +469,15 @@ their functions.js */
     position: relative;
   }
 }
-@media screen and (max-width: 667px){
+@media screen and (max-width: 769px){
+  .cart-product{
+    min-width: 100px;
+  }
+  .custom-thumb{
+    height: auto !important;
+    width: auto !important;
+  }
+
   .custom-image-title{
     opacity: 1;
   }
