@@ -56,7 +56,7 @@ router.post('/', function(req, res, next){
   }))
   .then(charge => {
     // clear session data
-
+    req.session.destroy();
     // display confirmation
     res.render('paymentConfirmation', {
       galleries: galleries,
