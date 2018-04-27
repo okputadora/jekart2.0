@@ -6,9 +6,7 @@ const galleryImport = require('../galleries')
 const galleries = galleryImport.galleries;
 
 router.get('/:name', function(req, res, next){
-  console.log("GETTING GALLERY")
   var name = req.params.name
-  console.log(name)
   controller = controllers['art']
   controller.getByParam({galleryName: name})
   .then(function(gallery){
@@ -19,7 +17,6 @@ router.get('/:name', function(req, res, next){
         capitalWord = word.charAt(0).toUpperCase() + word.substring(1)
         capitalized.push(capitalWord)
       })
-      console.log(capitalized)
       elem['displayName'] = capitalized.join(" ")
       console.log(elem.displayName)
       return elem;
@@ -46,6 +43,7 @@ router.get('/:name', function(req, res, next){
 
 router.get('/image/:name', function(req, res, next){
   var name = {name: req.params.name}
+  console.log(name)
   controller = controllers['art']
   controller.getByParam(name)
   .then(function(image){
