@@ -144,6 +144,9 @@ router.get('/:item', (req,res,next) => {
   let totQty = null;
   if (req.session.cart){
     totQty = req.session.cart.totQty;
+    if (totQty == 0){
+      totQty = "";
+    }
   }
   var name = {name: req.params.item.trim()}
   controller = controllers['prints']

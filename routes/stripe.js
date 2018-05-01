@@ -57,7 +57,7 @@ router.post('/', function(req, res, next){
     // display confirmation
     res.render('paymentConfirmation', {
       galleries: galleries,
-      message: "Your order has been processed.",
+      message: "Thank you for your order!",
       message2: "Please check your inbox for confirmation and shipping details."
     })
   })

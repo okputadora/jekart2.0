@@ -35,11 +35,9 @@ $(document).ready(function(){
     if ($("#switch-toggle-2").is(":checked")){
       var newTotal = framedPrice + unframedPrice;
       $(".product-price").html("$" + newTotal);
-      $(".discount-price").html("$15 discount for local pickup");
     }
     else{
       $(".product-price").html("$"+unframedPrice);
-      $(".discount-price").html("$5 discount for local pickup");
     }
   })
 
