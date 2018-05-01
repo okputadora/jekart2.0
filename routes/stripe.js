@@ -9,7 +9,6 @@ var stripe = require('stripe')(process.env.STRIPE_SK)
 
 router.post('/', function(req, res, next){
   let items = req.session.charge.cart;
-  console.log(items)
   let description = '';
   // create description from items
   items.forEach(item => {
@@ -39,8 +38,6 @@ router.post('/', function(req, res, next){
       state: req.body.stripeShippingAddressState
     }
   }
-
-  console.log(shippingInfo)
   stripe.customers.create({
     email: req.body.stripeEmail,
     source: req.body.stripeToken,

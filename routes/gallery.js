@@ -11,7 +11,6 @@ router.get('/:name', function(req, res, next){
   controller.getByParam({galleryName: name})
   .then(function(gallery){
     if (name === "degradation sets"){
-      console.log(gallery[0].name)
       res.render("degradation", {
         galleryName: name,
         gallery: gallery,
@@ -32,11 +31,9 @@ router.get('/:name', function(req, res, next){
 
 router.get('/image/:name', function(req, res, next){
   var name = {name: req.params.name}
-  console.log(name)
   controller = controllers['art']
   controller.getByParam(name)
   .then(function(image){
-    console.log(image.dimensions)
     image = image[0];
     res.render('image', {
       title: image.name,

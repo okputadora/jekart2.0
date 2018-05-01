@@ -1,11 +1,12 @@
 $(document).ready(function(){
+  var CART_COUNT;
   if ($("#main-price").html()){
     var unframedPrice = parseInt($("#main-price").html().slice(1));
     var framedPrice = parseInt($("#framed-price").html().slice(3));
   }
   if ($("#cart-count").html()){
-    var cartCount = parseInt($("#cart-count").html().slice(1));
-  }else{cartCount = 0;}
+    CART_COUNT = parseInt($("#cart-count").html());
+  }else{CART_COUNT = 0;}
   // Add to cart
   $(".content-wrap").on("click", ".add-to-cart", function(e){
     e.preventDefault();
@@ -16,11 +17,9 @@ $(document).ready(function(){
       var framed = $(".framed").is(":checked");
       var qty = $(".qty").val();
     }else{qty = 1; framed = false;}
-    cartCount += parseInt(qty)
-    console.log(cartCount)
+    CART_COUNT += parseInt(qty)
     // update the display cart
-    $("#cart-count").html("+" + cartCount)
-
+    $("#cart-count").html(CART_COUNT)
     // update the cart on the server
     $.ajax({
       url: '/shop/addToCart',
@@ -46,7 +45,6 @@ $(document).ready(function(){
 
   // change qunatiies
   $(".content-wrap").on("click", ".plus", function(){
-    console.log("Cluick")
     var id = this.id;
     qtyId = id.slice(id.indexOf("-") + 1);
     var val = $("#qty-"+qtyId).val();
@@ -64,14 +62,10 @@ $(document).ready(function(){
   })
 
   $(".content-wrap").on("click", ".edit", function(){
-    // $("#update-cart").prop("disabled", false);
-    // $("#checkout").prop("disabled", true);
-    console.log("edited")
     updateCart();
   })
 
   $(".content-wrap").on("click", ".remove", function(){
-    console.log("HELLO")
     id = this.id;
     removeId = id.slice(id.indexOf("-") + 1);
     $("#"+removeId).remove()
@@ -91,19 +85,18 @@ $(document).ready(function(){
       }
       items.push({id: id, qty: qty, framed: framed});
     })
-    console.log(items)
     items = JSON.stringify(items)
     $.ajax({
       url: '/shop/updateCart',
       type: 'POST',
       data: {items: items}
     }).then(function(cart){
-      var cartCount = 0;
+      CART_COUNT = 0;
       // rebuild the cart
       $("#cart-list").html("");
       cart.forEach(function(item){
         // update the cart count
-        cartCount += item.qty
+        CART_COUNT += item.qty
         var tr = $("<tr>")
           .addClass("cart_item")
           .attr("id", item.id);
@@ -129,9 +122,7 @@ $(document).ready(function(){
         toggleSwitch
           .attr("id", "framed-" + item.id)
           .attr("type", "checkbox")
-          console.log(item.framed)
         if (item.framed === "checked"){
-          console.log("framed!!")
           toggleSwitch.prop("checked", "true");
         }
         var toggleLabel = $("<label>").attr("for", "framed-" + item.id);
@@ -172,7 +163,7 @@ $(document).ready(function(){
         tr.append(remove, image, name, framed, price, qty, subtotal)
         $("#cart-list").append(tr)
       })
-      $("#cart-count").html(cartCount)
+      $("#cart-count").html(CART_COUNT)
     })
   }
 

@@ -3,14 +3,10 @@ const Promise = require('bluebird')
 const framedPrice = 50;
 module.exports = {
   displayCart: (cart, page) => {
-    return new Promise((resolve, reject) => {
-      console.log("step 1")
       let promises = []
       let cartTotalItems = 0;
       cart.items.forEach(item => {
-        console.log(item.id)
         cartTotalItems += parseInt(item.qty);
-        console.log(item.framed)
         promises.push(controllers['prints'].getByParam({_id: item.id}))
       })
       Promise.all(promises).then(resultsArr => {
@@ -21,7 +17,6 @@ module.exports = {
           let id = result[0]._id;
           // well this isn't great. how come i have a string sometimes
           if ((framed == 'true' || framed === true) && page === "cart"){
-            console.log("page = cart")
             framed = 'checked'
             price = price + framedPrice;
             id = id + "_F"

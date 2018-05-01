@@ -21,7 +21,6 @@ module.exports = {
           reject(err)
           return
         }
-        console.log("returning a print item")
         resolve(item);
       })
     })

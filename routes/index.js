@@ -12,8 +12,6 @@ const galleryImport = require('../galleries')
 const galleries = galleryImport.galleries;
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log("IN index")
-  console.log(galleries)
   res.render('index', {
     title: 'JEK art',
     galleries: galleries
@@ -21,7 +19,6 @@ router.get('/', function(req, res, next) {
 })
 
 router.get('/:page', function(req, res, next){
-  console.log("in here?")
   var page = req.params.page
   // list of STATIC pages, dynamic pages have their own routes
   var pages = ['statement', 'galleries', 'process', 'events',

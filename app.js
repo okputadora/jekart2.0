@@ -18,10 +18,10 @@ require('dotenv').config();
 
 mongoose.connect(process.env.MONGO_URI, (err, res) => {
   if (err){
-    console.log('DB CONNECTION FAILED: '+err)
+    // console.log('DB CONNECTION FAILED: '+err)
   }
   else{
-    console.log('DB CONNECTION SUCCESS: '+ process.env.MONGO_URI)
+    // console.log('DB CONNECTION SUCCESS: '+ process.env.MONGO_URI)
   }
 })
 var app = express();

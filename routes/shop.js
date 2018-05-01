@@ -12,7 +12,6 @@ router.get('/', (req, res, next) => {
   if (req.session.cart){
     cartCount = req.session.cart.totQty;
   }
-  console.log("cart: ", req.session.cart)
   controller = controllers['prints']
   controller.get()
   .then((prints) => {
@@ -33,11 +32,9 @@ router.get('/', (req, res, next) => {
 router.get('/cart', (req, res, next) => {
   let cart = req.session.cart
   if (cart){
-    cartCount = "+" + req.session.cart.totQty;
-    console.log("displaying the cart")
+    cartCount = req.session.cart.totQty;
     utils.displayCart(cart, "cart")
     .then((displayCart) => {
-      console.log(displayCart)
       if (cartCount == 0){
         cartCount = "";
       }
@@ -51,7 +48,6 @@ router.get('/cart', (req, res, next) => {
       res.render('cart', {
         galleries: galleries,
       })
-      // console.log("error: ", err)
     })
     return;
   }
@@ -147,7 +143,7 @@ router.post('/:action', (req,res,next) => {
 router.get('/:item', (req,res,next) => {
   let totQty = null;
   if (req.session.cart){
-    totQty = "+" + req.session.cart.totQty;
+    totQty = req.session.cart.totQty;
   }
   var name = {name: req.params.item.trim()}
   controller = controllers['prints']
