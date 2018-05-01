@@ -6,7 +6,6 @@ $(document).ready(function(){
   if ($("#cart-count").html()){
     var cartCount = parseInt($("#cart-count").html().slice(1));
   }else{cartCount = 0;}
-  console.log(cartCount)
   // Add to cart
   $(".content-wrap").on("click", ".add-to-cart", function(e){
     e.preventDefault();
@@ -75,17 +74,11 @@ $(document).ready(function(){
     console.log("HELLO")
     id = this.id;
     removeId = id.slice(id.indexOf("-") + 1);
-    $.ajax({
-      url: '/shop/removeFromCart',
-      type: "POST",
-      data: {id: removeId}
-    }).then(function(result){
-      $("#"+removeId).remove()
-    })
+    $("#"+removeId).remove()
+    updateCart();
   })
 
   function updateCart(){
-    console.log("updating")
     // grab the items in the cart
     var items = [];
     $('.cart_item').each(function(){
@@ -105,10 +98,12 @@ $(document).ready(function(){
       type: 'POST',
       data: {items: items}
     }).then(function(cart){
-      console.log(cart)
+      var cartCount = 0;
       // rebuild the cart
       $("#cart-list").html("");
       cart.forEach(function(item){
+        // update the cart count
+        cartCount += item.qty
         var tr = $("<tr>")
           .addClass("cart_item")
           .attr("id", item.id);
@@ -177,6 +172,7 @@ $(document).ready(function(){
         tr.append(remove, image, name, framed, price, qty, subtotal)
         $("#cart-list").append(tr)
       })
+      $("#cart-count").html(cartCount)
     })
   }
 

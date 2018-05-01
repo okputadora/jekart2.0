@@ -10,12 +10,15 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   let cartCount = null
   if (req.session.cart){
-    cartCount = "+" + req.session.cart.totQty;
+    cartCount = req.session.cart.totQty;
   }
   console.log("cart: ", req.session.cart)
   controller = controllers['prints']
   controller.get()
   .then((prints) => {
+    if (cartCount == 0){
+      cartCount = "";
+    }
     res.render('shop', {
       galleries: galleries,
       prints: prints,
@@ -35,6 +38,9 @@ router.get('/cart', (req, res, next) => {
     utils.displayCart(cart, "cart")
     .then((displayCart) => {
       console.log(displayCart)
+      if (cartCount == 0){
+        cartCount = "";
+      }
       res.render('cart', {
         galleries: galleries,
         cart: displayCart,
@@ -60,17 +66,14 @@ router.post('/checkout', (req, res, next) => {
   let shippingCost = "Free Shipping";
   let pickup = false;
   let grandTotal = 0;
-  console.log("getting cart")
   utils.displayCart(cart, "checkout")
   .then((displayCart) => {
-    console.log("got cart")
     let cartTotal = 0;
     // sum the prices in the cart
     displayCart.forEach(item => {
       cartTotal += (parseInt(item.price) * parseInt(item.qty))
       grandTotal = cartTotal;
     })
-    console.log("good to here")
     // if pickup add 15% discount
     if (req.body['radio-group-1'] === "pickup"){
       shippingCost = cartTotal * .15;
@@ -78,26 +81,20 @@ router.post('/checkout', (req, res, next) => {
       grandTotal = Math.round(grandTotal * 10) / 10;
       shippingCost = "- $"+shippingCost
     }
-    console.log("and here")
     // because stripe doesn't use decimals in their prices
     // we need to reformat this a bit //CONVERT THIS TO TERNARY IF
     let stripeTotal = grandTotal + "00"
     grandTotal = grandTotal.toString()
-    console.log(grandTotal)
     if (grandTotal.indexOf(".") > -1){
-      console.log("there is a decimal")
-      console.log(grandTotal)
       stripeTotal = grandTotal.slice(0, grandTotal.indexOf(".")) + grandTotal.slice(grandTotal.indexOf("." + 1)) + "0";
-      console.log(stripeTotal)
-      console.log(grandTotal)
     }
-    console.log("and were good here")
     let pk = process.env.STRIPE_PK;
     let items = JSON.stringify(cart.items);
     // keep this data server side
     req.session.charge = {cart: displayCart, stripeTotal, cartTotal, shippingCost, grandTotal, shippingCost};
-    console.log("good the whole way")
-    console.log(req.session.charge)
+    if (cartCount == 0){
+      cartCount = "";
+    }
     res.render('checkout', {
       galleries: galleries,
       cart: displayCart,
@@ -126,21 +123,12 @@ router.post('/:action', (req,res,next) => {
   }
   let cart = new Cart(oldCart, oldTotQty)
   if (req.params.action === 'addToCart'){
-    console.log("qty to be added: " + oldTotQty)
     cart.add(req.body.id, req.body.qty, req.body.framed)
     req.session.cart = cart;
-    console.log(cart)
     res.send(200)
-  }
-  else if (req.params.action === "removeFromCart"){
-    cart.remove(req.body.id, req.body.qty)
-    console.log(cart)
-    req.session.cart = cart;
-    res.send("200")
   }
   else if (req.params.action === "updateCart"){
     let items = JSON.parse(req.body.items);
-    console.log(items)
     // create a new empty cart and add elements one at a time,
     // because the user can toggle the framing options here, it's possible
     // we now have a duplicate in our cart
@@ -148,7 +136,6 @@ router.post('/:action', (req,res,next) => {
     items.forEach(item => {
       cart.add(item.id, item.qty, item.framed)
     })
-    console.log(cart)
     req.session.cart = cart;
     utils.displayCart(cart, "cart")
     .then(displayCart => {
@@ -189,8 +176,5 @@ router.get('/:item', (req,res,next) => {
     res.render("error", {galleries: galleries})
   })
 })
-
-
-
 
 module.exports = router;
