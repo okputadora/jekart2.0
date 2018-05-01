@@ -3,13 +3,15 @@ const Promise = require('bluebird')
 const framedPrice = 50;
 module.exports = {
   displayCart: (cart, page) => {
+    return new Promise((resolve, reject) => {
       let promises = []
       let cartTotalItems = 0;
       cart.items.forEach(item => {
         cartTotalItems += parseInt(item.qty);
         promises.push(controllers['prints'].getByParam({_id: item.id}))
       })
-      Promise.all(promises).then(resultsArr => {
+      Promise.all(promises)
+      .then(resultsArr => {
         const displayResultsArr = resultsArr.map((result, i) => {
           let price = parseInt(result[0].price1);
           let qty = parseInt(cart.items[i].qty);
@@ -44,7 +46,9 @@ module.exports = {
         resolve(displayResultsArr)
       })
       .catch(err => {
-        reject(err)
+        reject(err);
       })
+    })
+
   }
 }
