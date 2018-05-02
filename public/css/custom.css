@@ -15,12 +15,17 @@ a {
 }
 
 #logo{
-  display: flex;
-  margin-right: 0;
-  transition: .1s;
+  display: flex !important;
+  margin-right: 0 !important;
+  transition: .1s !important;
 }
 
 .standard-logo{
+  box-sizing: border-box !important;
+}
+
+.custom-mobile-logo{
+  box-sizing: border-box;
   padding: 10px;
 }
 
@@ -67,14 +72,6 @@ a {
 .custom-menu-item{
     color: white !important;
     opacity: 1 !important;
-}
-
-.custom-mobile-logo{
-  box-sizing: content-box;
-  height: 40px !important;
-  width: 60px !important;
-  margin-top: 30px;
-  margin-left: -20px;
 }
 
 .custom-current{
