@@ -58,7 +58,7 @@ router.get('/cart', (req, res, next) => {
 
 router.post('/checkout', (req, res, next) => {
   let cart = req.session.cart;
-  let cartCount = "+" + req.session.cart.totQty;
+  let cartCount = req.session.cart.totQty;
   let shippingCost = "Free Shipping";
   let pickup = false;
   let grandTotal = 0;
@@ -78,7 +78,7 @@ router.post('/checkout', (req, res, next) => {
       shippingCost = "- $"+shippingCost
     }
     // because stripe doesn't use decimals in their prices
-    // we need to reformat this a bit //CONVERT THIS TO TERNARY IF
+    // we need to reformat this a bit
     let stripeTotal = grandTotal + "00"
     grandTotal = grandTotal.toString()
     if (grandTotal.indexOf(".") > -1){

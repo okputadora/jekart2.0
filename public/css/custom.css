@@ -428,20 +428,24 @@ their functions.js */
 }
 
 .local-pickup, .standard-shipping{
-  vertical-align: top !important; 
+  vertical-align: top !important;
 }
 /* ADMIN PAGE */
 .adminTable{
   padding: 0!important;
   width: 50px;
 }
+.confirmation{
+  min-height: 60vh;
+  flex-direction: column;
+  justify-content: center !important;
+  color: white !important;
+}
 @media screen and (max-width: 1300px){
   .custom-title{
     font-size: 20px;
   }
 }
-
-
 @media screen and (max-width: 991px){
   .custom-sub-menu-item{
     color: white !important;
@@ -498,12 +502,12 @@ their functions.js */
     font-size: 12px !important;
   }
 }
-
-.confirmation{
-  min-height: 60vh;
-  flex-direction: column;
-  justify-content: center !important;
-  color: white !important;
+@media screen and (max-width: 550px){
+  .product-overlay{
+    background: black !important;
+    color: white !important;
+    bottom: 0px !important;
+  }
 }
 @media screen and (max-width: 450px){
   .custom-background{
