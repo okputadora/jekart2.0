@@ -503,6 +503,9 @@ their functions.js */
   }
 }
 @media screen and (max-width: 550px){
+  .shop-container{
+    overflow-x: scroll;
+  }
   .product-overlay{
     background: black !important;
     color: white !important;
