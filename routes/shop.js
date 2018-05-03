@@ -57,6 +57,11 @@ router.get('/cart', (req, res, next) => {
 })
 
 router.post('/checkout', (req, res, next) => {
+  if (!req.session.cart){
+    return res.render("checkout", {
+      galleries: galleries
+    })
+  }
   let cart = req.session.cart;
   let cartCount = req.session.cart.totQty;
   let shippingCost = "Free Shipping";

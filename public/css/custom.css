@@ -183,6 +183,9 @@ a {
   background: url('/art_imgs/background/main1.png');
   background-attachment: fixed;
   min-height: 85vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .plain-background{
@@ -520,11 +523,11 @@ their functions.js */
   }
 }
 @media screen and (max-width: 450px){
-  .custom-background{
+  /* .custom-background{
     background: #9b9b9b;
     background-attachment: fixed;
     min-height: 80vh;
-  }
+  } */
 
   .degradation-image{
     height: auto;

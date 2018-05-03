@@ -61,6 +61,8 @@ router.post('/:action', function(req, res, next){
 			message:'Invalid resource...check your spelling'
 		})
 	}
+	// confirm with google
+
 	// req.body is the form data...input names from form must match names in the database schemas
 	controller.post(req.body)
 	.then(function(result){

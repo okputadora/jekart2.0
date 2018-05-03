@@ -33,13 +33,5 @@ router.get('/:page', function(req, res, next){
   })
 })
 
-// contact form
-router.post('/:action', function(req, res, next){
-  var action = req.params.action
-  if (action == 'inquiry'){
-    res.redirect('/confirmation');
-  }
-})
-
 
 module.exports = router;
