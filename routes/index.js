@@ -22,7 +22,7 @@ router.get('/:page', function(req, res, next){
   var page = req.params.page
   // list of STATIC pages, dynamic pages have their own routes
   var pages = ['statement', 'galleries', 'process', 'events',
-      'upcoming-events', 'past-events', 'contact', 'confirmation', 'admin']
+      'upcoming-events', 'past-events', 'contact', 'confirmation']
   if (pages.indexOf(page) == -1){
     res.render('error', {galleries: galleries})
     return
