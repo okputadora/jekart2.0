@@ -14,7 +14,8 @@ gulp.task('build', function(){
       './public/js/plugins.js',
       './public/js/functions.js',
       './public/js/slideshow.js',
-      './public/js/shop.js'
+      './public/js/shop.js',
+      './public/js/imageLoader.js'
     ]
   )
   .pipe(gp_concat('gulp-concat.js'))
